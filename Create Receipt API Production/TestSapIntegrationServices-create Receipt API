@@ -1,0 +1,3307 @@
+@isTest
+public class TestSapIntegrationServices {
+    /*@isTest
+    Public static void SAPIntegrationServicesTest(){
+       
+        // account creation 
+        Account objac = new Account();
+        objac.FirstName = 'name';
+        objac.LastName = 'Test';
+        objac.Correspondence_Address__c = 'Delhi';
+        objac.Phone = '1655246165' ;
+        objac.PersonEmail = 'test12322@stetig.in';
+        objac.PersonMobilePhone = '7875225343';
+        objac.Category__c = 'General';
+        //  objac.Unit__c = objPU1.Id;
+        insert objac;
+        // Project Creation
+        Project__c objpr = new Project__c();
+        objpr.Project_Code__c = 'T351';
+        objpr.Name = 'pname1';
+        objpr.Start_Date__c = System.today().addDays(-5);
+        objpr.Project_Stage__c='Launch1';
+        objpr.Address__c = '14013, Fantasy Land, Utopia, Planet Mars, OUTERWORLD CODE -11011';
+        objpr.Project_Property_Type__c = 'Residential';                      
+        objpr.NPV__c = 12;    
+        objpr.Future_NPV__c = 12;
+        objpr.Car_Park_Type_1__c = 'Open';
+        objpr.Charge_Value_1__c = 100000; 
+        objpr.Schedule_F_Property__c = 'Schdule F';
+        objpr.IDSA_Preamble__c = 'preamble';
+        objpr.Project_Code__c = '1000';
+        objpr.Company_Code__c = 2000;
+        objpr.Interior_Design_Head__c = userinfo.getUserId();
+        insert objpr;
+        
+        End_Time_for_Event__c ed = new End_Time_for_Event__c();
+        ed.Name = 'End Time Minutes';
+        ed.End_Minutes__c = 120;
+        insert ed;
+        
+        // opportunity creation              
+        Opportunity objOpportunity = new Opportunity();
+        objOpportunity.Name = 'Test';
+        objOpportunity.CloseDate = System.today();
+        objOpportunity.AccountId = objac.Id;           
+        objOpportunity.StageName = 'Qualification'; 
+        objOpportunity.Project__c = objpr.Id;
+        objOpportunity.Date_of_Agreement__c = System.today();
+        insert objOpportunity;
+        
+        
+        Cluster__c ph = new Cluster__c();
+        ph.Name = 'test phase';
+        ph.Project__c  = objpr.Id;
+        ph.MAHA_RERA_No__c = '12345';
+        ph.CompanyName_Escrow__c = 'ABCD';
+        ph.CompanyName_Tax__c = 'XYZ';
+        ph.Schedule_E_Property__c = 'Schedule E';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project Land';
+        ph.Schedule_A_Property__c = 'Schedule A';
+        ph.Schedule_B_Property__c = 'Schedule B';
+        ph.Schedule_C_Property__c = 'Schedule C';
+        ph.Schedule_D_Property__c = 'Schedule D';
+        ph.Schedule_F_Property__c = 'Schedule F';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project land';
+        ph.Plan_01_Master_Development__c = 'Plan 01';
+        ph.Plan_02_Residential_Development__c = 'Plan 02';
+        ph.Plan_03_Project__c = 'Plan 03';
+        ph.SAP_Project_Code__c = '3231';
+        ph.SAP_Plant_Code__c = '3637';
+        ph.Short_Key_for_a_House_Bank__c = '4244';
+        ph.Tax_House_Bank_Code__c = '57877';
+        insert ph;
+        
+        // tower creation 
+        Tower__c t = new Tower__c();
+        t.Name = 'Tower X';
+        t.Project__c = objpr.Id;
+        //t.RDS_Company_Code__c=objlglentity.Id;
+        t.Cluster__c= ph.Id;
+        insert t;
+        
+        TE_Product__c pd = new TE_Product__c();
+        pd.Name = 'C20';
+        pd.Product_Type__c = 'Apartment';
+        insert pd;
+        
+        Project_Product__c ppr = new Project_Product__c();
+        ppr.name = 'ppr';
+        ppr.Project__c = objpr.id;
+        ppr.Product__c = pd.id;
+        ppr.Car_Park_Type_1__c = 'Open';
+        ppr.Car_Park_Count_1__c = 1;
+        ppr.Default_Customisation__c = 'Online';
+        ppr.Default_Specification__c = 'Green';
+        insert ppr;
+        
+        Sub_Product__c sb = new Sub_Product__c();
+        sb.name = 'C20a1';
+        sb.Project__c = objpr.id;
+        sb.Product__c = pd.id;
+        sb.Active__c = true;
+        sb.Status__c = 'Approved';
+        sb.Carpet_Area__c = 1650;
+        sb.Super_Builtup_Area__c = 2000;
+        sb.RERA_Carpet_Area__c = 1650;
+        sb.Saleable_Area__c = 2000;
+        sb.Builtup_Area__c = 1800;
+        insert sb; 
+        
+        Unit__c objPU1 = new Unit__c();    
+        
+        objPU1.Name = 'TestFive';      
+        objPU1.Project__c = objpr.Id;
+        objPU1.Unit_status__c='Available';
+        objPU1.Tower__c = t.Id;
+        objPU1.Active_Inactive__c = 'Active';
+        objPU1.Floor__c = 2;
+        objPU1.Product_Type__c = sb.id; 
+        objPU1.Floor__c = 2;
+        objPU1.Configuration__c = '1 BHK';
+        objPU1.TE_Product__c = pd.id;
+        objPU1.Additional_Land__c = 150;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor_Rise_PSF__c = 250;
+        objPU1.Customization_Charge_PSF__c = 0;
+        objPU1.Additional_Land_PSF__c = 100;
+        objPU1.Premium_1__c = 'View Premium';
+        objPU1.Premium_2__c = 'Ground Level Premium';
+        objPU1.View_Premium_PSF__c = 10;
+        objPU1.Vastu_Premium_PSF__c = 10;
+        objPU1.MBR_Premium_Garden_Orientation_PSF__c= 19;
+        objPU1.Ground_Level_Premium_PSF__c = 10;
+        objPU1.Permitted_Use__c = 'Commercial';
+        objPU1.Parent_Carpet_Area__c = 123;
+        objPU1.Parent_Saleable_Area__c = 234;
+        objPU1.Parent_Unit__c = 'Parent Unit';
+        objPU1.Parent_Unit_Plan__c = 'Unit Plan';
+        objPU1.TE_Product__c = pd.Id;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor__c = 4;
+        objPU1.Unit_Ownership__c = 'TE';
+        insert objPU1;
+        
+        Quotation__c qController = new Quotation__c();
+        qController.Opportunity__c = objOpportunity.Id;
+        qController.Unit__c = objPU1.Id;
+        qController.Quote_Status__c = 'Valid';
+        insert qController;
+        
+        Payment_Milestones__c pm = new Payment_Milestones__c();
+        pm.Quotation__c = qController.id;
+        pm.Milestone_Type_edit__c = 'Date Linked';
+        pm.Invoice_Date__c = system.today().addDays(5);
+        pm.Invoice_Due_Date__c = system.today().addDays(5);
+        insert pm;
+        
+        Booking__c b = new Booking__c();
+        b.Booking_Date__c = system.today();
+        b.Project__c = objpr.Id;
+        b.Opportunity__c = objOpportunity.Id;
+        b.Unit__c = objPU1.Id;
+        b.Audit_Approval_Date__c = system.today().addMonths(3);
+        b.status__c = 'Processed';
+        b.Quotation__c = qController.Id;
+        b.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b.Signed_Termsheet_Date__c = System.today();
+        insert b;
+        
+        objOpportunity.Booking__c = b.Id;
+        objOpportunity.Old_Booking__c = b.id;
+        update objOpportunity;
+      Test.startTest();  
+        Booking__c b1 = new Booking__c();
+        b1.Booking_Date__c = system.today();
+        b1.Project__c = objpr.Id;
+        b1.Opportunity__c = objOpportunity.Id;
+        b1.Unit__c = objPU1.Id;
+        b1.Audit_Approval_Date__c = system.today().addMonths(3);
+        b1.status__c = 'Processed';
+        b1.Quotation__c = qController.Id;
+        b1.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b1.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b1.Signed_Termsheet_Date__c = System.today();
+        insert b1;
+        
+        Receipt__c r1 = new Receipt__c();
+        r1.Cheque_DD_Amount_Rs__c = 200000;
+        r1.Cheque_DD__c = '908888';
+        r1.Cheque_DD_Date__c = system.today();
+        r1.SAP_Posting_Date__c = system.today();
+        r1.Project__c = objpr.Id;
+        r1.Project_Unit__c = objPU1.id;
+        r1.Opportunity__c = objOpportunity.Id;
+        r1.CheckReceipt__c = true;
+        r1.Token_Amount_Receipt__c = true;
+        r1.Physically_Cheque_Received__c = true;
+        r1.Approval_Status__c = 'Approved';
+        r1.Receipt_Date__c = system.today();
+        r1.DraweeBank__c = 'Axis Bank';
+        r1.Total_Amount__c = 200000;
+        r1.Amount_Rs__c = 200000;
+        r1.Amount_Advanced__c = 0;
+        r1.mode__c = 'Cheque';
+        r1.Currency__c = 'Indian Rupee';
+        r1.Booking__c = b.Id;
+        r1.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r1;
+        
+        Receipt__c cr = new Receipt__c();
+        cr.Cheque_DD_Amount_Rs__c = 200000;
+        cr.Cheque_DD__c = '908888';
+        cr.Cheque_DD_Date__c = system.today();
+        cr.SAP_Posting_Date__c = system.today();
+        cr.Project__c = objpr.Id;
+        cr.Project_Unit__c = objPU1.id;
+        cr.Opportunity__c = objOpportunity.Id;
+        cr.CheckReceipt__c = true;
+        cr.Token_Amount_Receipt__c = true;
+        cr.Physically_Cheque_Received__c = true;
+        cr.Approval_Status__c = 'Approved';
+        cr.Receipt_Date__c = system.today();
+        cr.DraweeBank__c = 'Axis Bank';
+        cr.Total_Amount__c = 200000;
+        cr.Amount_Rs__c = 200000;
+        cr.Amount_Advanced__c = 0;
+        cr.mode__c = 'Credit Note';
+        cr.Currency__c = 'Indian Rupee';
+        cr.Booking__c= b.Id;
+        cr.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert cr;
+        
+        cr.Is_Transferred__c = true;
+        update cr;
+        
+        Receipt__c r3 = new Receipt__c();
+        r3.Cheque_DD_Amount_Rs__c = 8401;
+        r3.Booking__c = b.id;
+        r3.Cheque_DD__c = '908881';
+        r3.Cheque_DD_Date__c = system.today();
+        r3.Project__c = objpr.Id;
+        r3.Project_Unit__c = objPU1.id;
+        r3.Opportunity__c = objOpportunity.Id;
+        r3.CheckReceipt__c = true;
+        r3.Physically_Cheque_Received__c = true;
+        r3.Approval_Status__c = 'Approved';
+        r3.Receipt_Date__c = system.today();
+        r3.DraweeBank__c = 'CITI';
+        r3.Total_Amount__c = 8401;
+        r3.Amount_Rs__c = 8401;
+        r3.Amount_Advanced__c = 0;
+        r3.mode__c = 'Cheque';
+        r3.Currency__c = 'Indian Rupee';
+        insert r3;
+        
+        r3.Reason_for_rejection_new__c = 'Accepted';
+        update r3;
+        
+        Receipt__c r4 = new Receipt__c();
+        r4.Cheque_DD_Amount_Rs__c = 8401;
+        r4.Booking__c = b.id;
+        r4.Cheque_DD__c = '908881';
+        r4.Cheque_DD_Date__c = system.today();
+        r4.Project__c = objpr.Id;
+        r4.Project_Unit__c = objPU1.id;
+        r4.Opportunity__c = objOpportunity.Id;
+        r4.CheckReceipt__c = true;
+        r4.Physically_Cheque_Received__c = true;
+        r4.Approval_Status__c = 'Approved';
+        r4.Receipt_Date__c = system.today();
+        r4.DraweeBank__c = 'CITI';
+        r4.Total_Amount__c = 8401;
+        r4.Amount_Rs__c = 8401;
+        r4.Amount_Advanced__c = 0;
+        r4.mode__c = 'Cheque';
+        r4.Currency__c = 'Indian Rupee';
+        r4.Reason_for_rejection_new__c = 'Accepted';
+        r4.SAP_Posting_Date__c = system.today();
+        insert r4;
+        
+        r4.Banking__c = 'Payment Failed - Insufficient Funds';
+        update r4;
+        
+        Receipt__c r5 = new Receipt__c();
+        r5.Cheque_DD_Amount_Rs__c = 8402;
+        r5.Booking__c = b.id;
+        r5.Cheque_DD__c = '908881';
+        r5.Cheque_DD_Date__c = system.today();
+        r5.Project__c = objpr.Id;
+        r5.Project_Unit__c = objPU1.id;
+        r5.Opportunity__c = objOpportunity.Id;
+        r5.CheckReceipt__c = true;
+        r5.Physically_Cheque_Received__c = true;
+        r5.Approval_Status__c = 'Approved';
+        r5.Receipt_Date__c = system.today();
+        r5.DraweeBank__c = 'CITI';
+        r5.Total_Amount__c = 8401;
+        r5.Amount_Rs__c = 8401;
+        r5.Amount_Advanced__c = 0;
+        r5.Currency__c = 'Indian Rupee';
+        r5.Reason_for_rejection_new__c = 'Accepted';
+        r5.SAP_Posting_Date__c = system.today();
+        r5.Mode__c = 'Credit Note';
+        r5.Sub_Type_Credit_Note__c = 'TDS';
+        r5.Drawn_in_favour_of__c = '';
+        insert r5;
+        r5.Banking__c = 'Payment Successful';
+        update r5;
+        
+        Receipt__c r6 = new Receipt__c();
+        r6.Cheque_DD_Amount_Rs__c = 200000;
+        r6.Cheque_DD__c = '908888';
+        r6.Cheque_DD_Date__c = system.today();
+        r6.SAP_Posting_Date__c = system.today();
+        r6.Project__c = objpr.Id;
+        r6.Project_Unit__c = objPU1.id;
+        r6.Opportunity__c = objOpportunity.Id;
+        r6.CheckReceipt__c = true;
+        r6.Token_Amount_Receipt__c = true;
+        r6.Physically_Cheque_Received__c = true;
+        r6.Approval_Status__c = 'Approved';
+        r6.Receipt_Date__c = system.today();
+        r6.DraweeBank__c = 'Axis Bank';
+        r6.Total_Amount__c = 200000;
+        r6.Amount_Rs__c = 200000;
+        r6.Amount_Advanced__c = 0;
+        r6.mode__c = 'Cheque';
+        r6.Currency__c = 'Indian Rupee';
+        r6.Booking__c = b.Id;
+        r6.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r6;
+        
+        
+        Customization_New__c cn = new Customization_New__c();
+        cn.Booking__c = b.Id;
+        
+        cn.Interior_Design_Head__c = objpr.Interior_Design_Head__c;
+        //cn.Name = 'abcd';
+        cn.Quotation__c = qController.Id;
+        cn.Special_Discount__c = '4';
+        cn.Total_Customization_Cost__c = 4633737;
+        cn.Status__c = 'Active';
+        insert cn;
+        
+        Customization_Master__c cm = new Customization_Master__c();
+        cm.Active__c = true;
+        cm.Tax_Rate__c = 'GST 18%';
+        cm.Name = 'Master';
+        insert cm;
+        
+        
+        
+        Customization_Details__c cd = new Customization_Details__c();
+        cd.Name = 'Customization';
+        cd.Sr_No__c = 1;
+        cd.Amount__c = 433435;
+        cd.Description__c = ' Description';
+        cd.Amount__c = 234;
+        cd.Active__c = true;
+        cd.Customization_Master_New__c = cm.Id;
+        
+        insert cd;
+        
+        Customization_Master_Line_Items__c cmli = new Customization_Master_Line_Items__c();
+        cmli.Active__c = true;
+        cmli.Amount__c = 2242;
+        cmli.Booking__c = b.Id;
+        cmli.Customization__c = cn.Id;
+        cmli.Name = 'Namea';
+        cmli.Quotation__c = qController.Id;
+        cmli.Sr_No__c = 1;
+        insert cmli;
+        
+        Customization_Payment_Milestones__c CPM = new Customization_Payment_Milestones__c();
+        CPM.Milestone_Name__c = 'ABCD';
+        CPM.Milestone_type__c = 'Time Linked';
+        CPM.Number_of_days_months__c = 14;
+        CPM.Milestone_Date_Calculation__c = 'Days';
+        CPM.Percentage__c = 100;
+        CPM.Amount__c = 100;
+        CPM.CGST__c = 9;
+        CPM.SGST__c = 9;
+        CPM.Demand_Raised__c = false;
+        CPM.Due_Date__c = system.today().addDays(5);
+        CPM.Booking__c = b.id;
+        CPM.Customization__c = cn.id;
+        
+        Insert CPM;
+        
+        ProjectCharges__c PCharge = new ProjectCharges__c();
+        PCharge.Project__c = objpr.Id;
+        PCharge.Name = 'Basic';
+        PCharge.Charge_Name__c = 'Basic';
+        PCharge.Active__c = true;
+        PCharge.Calculatedas__c = 'Rate List at Project Charges Level';
+        PCharge.ChargeBucket__c = 'Agreement Value';
+        PCharge.Tax_Rate__c = 'GST 12%';
+        PCharge.Area_Type__c = 'RERA Carpet Area';
+        PCharge.Discount_Applicable__c = True;
+        PCharge.Type__c = 'PSF';
+        insert PCharge;
+        
+        Tax_Slab__c taxS = new Tax_Slab__C();
+        taxS.From_Date__c = System.today().addDays(-10);
+        taxS.To_Date__c = System.today().addDays(10);
+        taxS.Tax_Name__c = 'GST 12%';
+        taxS.Tax1_Name__c = 'CGST';
+        taxS.Tax1_Code__c = 'CGST';
+        taxS.Tax1_Percentage__c = 9.00;
+        taxS.Taxable1_Percentage__c = 66.66667;
+        taxS.Tax_Rate__c = 'GST 12%';
+        taxS.Tax2_Name__c = 'SGST';
+        taxS.Tax2_Code__c = 'SGST';
+        taxS.Tax2_Percentage__c = 9.00;
+        taxS.Taxable2_Percentage__c = 66.66667;
+        taxS.SAP_code__c = 'H3';
+        insert taxS;
+        
+        Tax_Slab__c taxS1 = new Tax_Slab__C();
+        taxS1.From_Date__c = System.today().addDays(-10);
+        taxS1.To_Date__c = System.today().addDays(10);
+        taxS1.Charge_Type__c = 'Interior Charges';
+        taxS1.Tax_Name__c = 'GST 18%';
+        taxS1.Tax1_Name__c = 'CGST';
+        taxS1.Tax1_Code__c = 'CGST';
+        taxS1.Tax1_Percentage__c = 9.00;
+        taxS1.Taxable1_Percentage__c = 100.00000;
+        taxS1.Tax_Rate__c = 'GST 18%';
+        taxS1.Tax2_Name__c = 'SGST';
+        taxS1.Tax2_Code__c = 'SGST';
+        taxS1.Tax2_Percentage__c = 9.00;
+        taxS1.Taxable2_Percentage__c = 100.00000;
+        taxS1.SAP_code__c = 'H3';
+        insert taxS1;
+        
+        Payment_Milestones__c pm1 = new Payment_Milestones__c();
+        pm1.Milestone_Type__c = 'Date Linked';
+        pm1.Quotation__c = qController.id;
+        pm1.Time_Period__c = 'Days';
+        pm1.Number_Of_Days__c = 30;
+        pm1.Milestone_Due_Date__c = date.today();
+        pm1.is_demand_raised__c = false;
+        insert pm1;
+        
+        Demand__c d = new Demand__c();
+        d.Payment_Milestones__c = pm.id;
+        d.Quotation__c = qController.id;
+        d.Booking__c = b.id;
+        d.Total_Amount_Demanded__c = 4601540.00;
+        d.Total_Tax_Demanded__c = 818128.00;
+        d.Invoice_Date__c = date.today();
+        d.Charge_1_Lookup__c = PCharge.id;
+        d.Customization_Demand__c = false;
+        d.Bypass_Validation__c = true;
+        d.Due_Date__c = system.today();
+        insert d;
+        
+        d.Is_Transferred__c = true;
+        update d;
+        
+        Demand__c d1 = new Demand__c();
+        d1.Payment_Milestones__c = pm.id;
+        d1.Quotation__c = qController.id;
+        d1.Booking__c = b.id;
+        d1.Total_Amount_Demanded__c = 4601540.00;
+        d1.Total_Tax_Demanded__c = 818128.00;
+        d1.Invoice_Date__c = date.today();
+        d1.Charge_1_Lookup__c = PCharge.id;
+        d1.Debit_Type__c = 'Brokerage Reversal';
+        d1.Debit_Demanded__c = 58;
+        d1.Debit_CGST__c = 5;
+        d1.Debit_SGST__c = 5;
+        
+        d1.Accounting_Document_Number__c = '53871581';
+        insert d1;
+        
+        Demand__c d2 = new Demand__c();
+        d2.Payment_Milestones__c = pm.id;
+        d2.Quotation__c = qController.id;
+        d2.Booking__c = b.id;
+        d2.Total_Amount_Demanded__c = 4601540.00;
+        d2.Total_Tax_Demanded__c = 818128.00;
+        d2.Invoice_Date__c = date.today();
+        d2.Debit_Type__c = 'TDS';
+        d2.Debit_Demanded__c = 58;
+        d2.Debit_CGST__c = 5;
+        d2.Debit_SGST__c = 5;
+        
+        d2.Accounting_Document_Number__c = '5387152581';
+        insert d2;
+        
+        Demand__c dcust = new Demand__c();
+        dcust.Payment_Milestones__c = pm.id;
+        dcust.Quotation__c = qController.id;
+        dcust.Booking__c = b.id;
+        dcust.Total_Amount_Demanded__c = 4601540.00;
+        dcust.Total_Tax_Demanded__c = 818128.00;
+        dcust.Invoice_Date__c = date.today();
+        dcust.Charge_1_Lookup__c = PCharge.id;
+        dcust.Debit_Type__c = 'Customization Charge';
+        dcust.Debit_Demanded__c = 58;
+        dcust.Debit_CGST__c = 5;
+        dcust.Debit_SGST__c = 5;
+        dcust.Customization_Payment_Milestones__c = CPM.id;
+        dcust.Customization_Demand__c = true;
+        dcust.Due_Date__c = system.today();
+        insert dcust;
+        
+        
+        
+        Demand__c doc = new Demand__c();
+        doc.Payment_Milestones__c = pm.id;
+        doc.Quotation__c = qController.id;
+        doc.Booking__c = b.id;
+        doc.Total_Amount_Demanded__c = 4601540.00;
+        doc.Total_Tax_Demanded__c = 818128.00;
+        doc.Invoice_Date__c = date.today();
+        doc.Charge_1_Lookup__c = PCharge.id;
+        doc.Debit_Type__c = 'Brokerage Reversal';
+        doc.Debit_Demanded__c = 58;
+        doc.Debit_CGST__c = 5;
+        doc.Debit_SGST__c = 5;
+        doc.SAP_Posting_Date__c = system.today();
+        doc.Accounting_Document_Number__c = '53871581';
+        insert doc;
+        doc.Approval_Status_Debit_Note__c = 'Accepted';
+        update doc;
+        
+        
+        Applicant_Details__c a1 = new Applicant_Details__c();
+        a1.Salutation__c = 'Mr.';
+        a1.Name = 'First Man1';
+        a1.Booking__c = b.id;
+        a1.Applicant_Number__c = 'Primary Applicant';
+        a1.Date_of_incorporation__c = System.today();
+        a1.DOB__c = system.today();
+        a1.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a1.Pincode__c = 444344;
+        a1.Country__c = 'India';
+        a1.State__c = 'Maharashtra';
+        a1.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a1.City__c = 'Nagpur';
+        a1.GSTIN__c = '324134';
+        a1.Mailing_Country__c= null;
+        a1.Mailing_Address__c = 'abccc';
+        a1.Mailing_City__c = 'amravati';
+        a1.Mailing_Pincode__c= null;
+        a1.Mobile_Number__c = '9090909031';
+        a1.Email_Address__c = 'newman1@justnow3.com';
+        a1.Nationality__c = 'Indian';
+        a1.Type_Of_Applicant__c  = 'Individual Buyer';
+        a1.Subtype_Of_Applicant__c = 'Indian National';
+        a1.Pancard__c = true;
+        a1.Address_Proof__c = true;
+        a1.Address_Proof_Document__c = 'xyz';
+        a1.Address_Proof_Number__c = 'pqr';
+        a1.One_Passport_Size_Color_Photograph__c = true;
+        a1.Other_Details_Remarks__c = 'abcd';
+        a1.Of_Ownership__c = 100;
+        a1.street__c = 'a';
+        a1.Street_2__c = 'b';
+        a1.Street_3__c = 'c';
+        a1.Street_4__c = 'd';
+        a1.Street_5__c = 'e';
+        a1.Bypass_Validation_Applicant__c = true;
+        insert a1;
+        Applicant_Details__c a2 = new Applicant_Details__c();
+        a2.Salutation__c = 'Ms.';
+        a2.Name = 'First Man2';
+        a2.Booking__c = b1.id;
+        a2.Applicant_Number__c = 'Primary Applicant';
+        a2.Date_of_incorporation__c = System.today();
+        a2.DOB__c = system.today();
+        a2.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a2.Pincode__c = 444344;
+        a2.Country__c = 'India';
+        a2.State__c = 'Maharashtra';
+        a2.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a2.City__c = 'Nagpur';
+        a2.Mailing_Country__c= null;
+        a2.Mailing_Address__c = 'abccc';
+        a2.Mailing_City__c = 'amravati';
+        a2.Mailing_Pincode__c= null;
+        a2.Mobile_Number__c = '9090909535';
+        a2.Email_Address__c = 'newman1@justnow4.com';
+        a2.Nationality__c = 'Indian';
+        a2.Type_Of_Applicant__c  = 'Individual Buyer';
+        a2.Subtype_Of_Applicant__c = 'Indian National';
+        a2.Pancard__c = true;
+        a2.Address_Proof__c = true;
+        a2.Address_Proof_Document__c = 'xyz';
+        a2.Address_Proof_Number__c = 'pqr';
+        a2.One_Passport_Size_Color_Photograph__c = true;
+        a2.Other_Details_Remarks__c = 'abcd';
+        a2.Of_Ownership__c = 100;
+        a2.street__c = 'a';
+        a2.Street_2__c = 'b';
+        a2.Street_3__c = 'c';
+        a2.Street_4__c = 'd';
+        a2.Street_5__c = 'e';
+        a2.Bypass_Validation_Applicant__c = true;
+        insert a2;
+        Applicant_Details__c a3 = new Applicant_Details__c();
+        a3.Salutation__c = 'Mrs.';
+        a3.Name = 'First Man2';
+        a3.Booking__c = b.id;
+        a3.Applicant_Number__c = 'Primary Applicant';
+        a3.Date_of_incorporation__c = System.today();
+        a3.DOB__c = system.today();
+        a3.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a3.Pincode__c = 444344;
+        a3.Country__c = 'India';
+        a3.State__c = 'Maharashtra';
+        a3.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a3.City__c = 'Nagpur';
+        
+        a3.Mailing_Pincode__c= null;
+        a3.Mobile_Number__c = '9090909535';
+        a3.Email_Address__c = 'newman1@justnow4.com';
+        
+        a3.Type_Of_Applicant__c  = 'Individual Buyer';
+        a3.Subtype_Of_Applicant__c = 'Indian National';
+        
+        a3.street__c = 'a';
+        a3.Street_2__c = 'b';
+        a3.Street_3__c = 'c';
+        a3.Street_4__c = 'd';
+        a3.Street_5__c = 'e';
+        a3.Bypass_Validation_Applicant__c = true;
+        insert a3;
+        Applicant_Details__c a4 = new Applicant_Details__c();
+        a4.Salutation__c = 'Dr.';
+        a4.Name = 'First Man2';
+        a4.Booking__c = b.id;
+        a4.Applicant_Number__c = 'Primary Applicant';
+        a4.Date_of_incorporation__c = System.today();
+        a4.DOB__c = system.today();
+        a4.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a4.Pincode__c = 444344;
+        a4.Country__c = 'India';
+        a4.State__c = 'Maharashtra';
+        a4.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a4.City__c = 'Nagpur';
+        a4.Mailing_Country__c= null;
+        a4.Mailing_Address__c = 'abccc';
+        a4.Mailing_City__c = 'amravati';
+        a4.Mailing_Pincode__c= null;
+        a4.Mobile_Number__c = '9090909535';
+        a4.Email_Address__c = 'newman1@justnow4.com';
+        a4.Nationality__c = 'Indian';
+        a4.Type_Of_Applicant__c  = 'Individual Buyer';
+        a4.Subtype_Of_Applicant__c = 'Indian National';
+        a4.Pancard__c = true;
+        a4.Address_Proof__c = true;
+        a4.Address_Proof_Document__c = 'xyz';
+        a4.Address_Proof_Number__c = 'pqr';
+        a4.One_Passport_Size_Color_Photograph__c = true;
+        a4.Other_Details_Remarks__c = 'abcd';
+        a4.Of_Ownership__c = 100;
+        a4.street__c = 'a';
+        a4.Street_2__c = 'b';
+        a4.Street_3__c = 'c';
+        a4.Street_4__c = 'd';
+        a4.Street_5__c = 'e';
+        a4.Bypass_Validation_Applicant__c = true;
+        insert a4;
+        List<SendCustomizationDemand.flowInput> inputList = new List<SendCustomizationDemand.flowInput>();
+        SendCustomizationDemand.flowInput input;
+        input = new SendCustomizationDemand.flowInput();
+        input.currentRecordId = dcust.Id;
+        inputList.add(input);
+        /*List<SendDemandMailAndPDF.flowInput> inputListd = new List<SendDemandMailAndPDF.flowInput>();
+        SendDemandMailAndPDF.flowInput inputd;
+        inputd = new SendDemandMailAndPDF.flowInput();
+        inputd.currentRecordId = d.Id;
+        inputListd.add(inputd);*/
+        
+        /*set<Id> rc = new set<Id>();
+        rc.add(cr.id);
+        set<Id> rec = new set<Id>();
+        rec.add(r1.id);
+        set<Id> rec1 = new set<Id>();
+        rec1.add(r6.id);
+        set<id> did = new set<Id>();
+        did.add(d.id);
+        //did.add(d2.id);
+        set<id> dcustid = new set<Id>();
+        dcustid.add(dcust.id);
+        List<id> custid = new List<Id>();
+        custid.add(dcust.id);
+        String Dummy = '{"example":"test"}';
+      //  Test.startTest();
+        PageReference pRef = Page.TransferInvoicesAndReceipts;
+        Test.setCurrentPage(pRef);
+        ApexPages.currentPage().getParameters().put('id',b1.id);
+        TransferInvoicesAndReceiptsController transf = new TransferInvoicesAndReceiptsController();
+        transf.Transfer();
+        TEPiSalesOrderSAP.SalesOrder(b.Id);
+        SAPIntegrationServices.createCustomerInSAP(b.Id);
+        TEPIDocumentReversal.docreversal(rc);
+        TEPIDocumentReversal.docreversalDemand(doc.Id);
+        SAPIntegrationAPI.createReceiptInSAP(rec);
+        SAPIntegrationAPI.createReceiptInSAP(rec1);
+        
+        
+        TotalEnvPiCustomerinvCreMemo.CustomerCredMemo(rc);
+        TotalEnvPiCustomerinvCreMemo.CustomerInvMemo(did);
+        TotalEnvPiCustomerinvCreMemo.CustomerDebitInvMemo(dId);
+        TotalEnvPiCustomerinvCreMemo.CustomerInvCustomization(dcustid);
+        GenerateCurrencyToWord gctw = new GenerateCurrencyToWord();
+        gctw.convert(638455333);
+        totalEnvironmentPiCustomerreceipt.Testing t1 = new totalEnvironmentPiCustomerreceipt.Testing();
+        t1.test();
+        totalEnvironmentPiCreatecustomer.Testing t2 = new totalEnvironmentPiCreatecustomer.Testing();
+        t2.test();
+        SendCustomizationDemand.currentRecordID(inputList);
+        //SendDemandMailAndPDF.currentRecordID(inputListd);
+        Test.stopTest();
+        
+    }*/
+    @isTest
+    Public static void SAPIntegrationServicesTest2(){
+    
+        
+        // account creation 
+        Account objac = new Account();
+        objac.FirstName = 'name';
+        objac.LastName = 'Test';
+        objac.Correspondence_Address__c = 'Delhi';
+        objac.Phone = '1655246165' ;
+        objac.PersonEmail = 'test12322@stetig.in';
+        objac.PersonMobilePhone = '7875225343';
+        objac.Category__c = 'General';
+        //  objac.Unit__c = objPU1.Id;
+        insert objac;
+        // Project Creation
+        Project__c objpr = new Project__c();
+        objpr.Project_Code__c = 'T351';
+        objpr.Name = 'pname1';
+        objpr.Start_Date__c = System.today().addDays(-5);
+        objpr.Project_Stage__c='Launch1';
+        objpr.Address__c = '14013, Fantasy Land, Utopia, Planet Mars, OUTERWORLD CODE -11011';
+        objpr.Project_Property_Type__c = 'Residential';                      
+        objpr.NPV__c = 12;    
+        objpr.Future_NPV__c = 12;
+        objpr.Car_Park_Type_1__c = 'Open';
+        objpr.Charge_Value_1__c = 100000; 
+        objpr.Schedule_F_Property__c = 'Schdule F';
+        objpr.IDSA_Preamble__c = 'preamble';
+        objpr.Project_Code__c = '1000';
+        objpr.Company_Code__c = 2000;
+        objpr.Interior_Design_Head__c = userinfo.getUserId();
+        insert objpr;
+        
+        End_Time_for_Event__c ed = new End_Time_for_Event__c();
+        ed.Name = 'End Time Minutes';
+        ed.End_Minutes__c = 120;
+        insert ed;
+        
+        // opportunity creation              
+        Opportunity objOpportunity = new Opportunity();
+        objOpportunity.Name = 'Test';
+        objOpportunity.CloseDate = System.today();
+        objOpportunity.AccountId = objac.Id;           
+        objOpportunity.StageName = 'Qualification'; 
+        objOpportunity.Project__c = objpr.Id;
+        objOpportunity.Date_of_Agreement__c = System.today();
+        insert objOpportunity;
+        
+        
+        Cluster__c ph = new Cluster__c();
+        ph.Name = 'test phase';
+        ph.Project__c  = objpr.Id;
+        ph.MAHA_RERA_No__c = '12345';
+        ph.CompanyName_Escrow__c = 'ABCD';
+        ph.CompanyName_Tax__c = 'XYZ';
+     //   ph.Schedule_E_Property__c = 'Schedule E';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project Land';
+        ph.Schedule_A_Property__c = 'Schedule A';
+        ph.Schedule_B_Property__c = 'Schedule B';
+        ph.Schedule_C_Property__c = 'Schedule C';
+        ph.Schedule_D_Property__c = 'Schedule D';
+        ph.Schedule_F_Property__c = 'Schedule F';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project land';
+        ph.Plan_01_Master_Development__c = 'Plan 01';
+        ph.Plan_02_Residential_Development__c = 'Plan 02';
+        ph.Plan_03_Project__c = 'Plan 03';
+        ph.SAP_Project_Code__c = '3231';
+        ph.SAP_Plant_Code__c = '3637';
+        ph.Short_Key_for_a_House_Bank__c = '4244';
+        ph.Tax_House_Bank_Code__c = '57877';
+        insert ph;
+        
+        // tower creation 
+        Tower__c t = new Tower__c();
+        t.Name = 'Tower X';
+        t.Project__c = objpr.Id;
+        //t.RDS_Company_Code__c=objlglentity.Id;
+        t.Cluster__c= ph.Id;
+        insert t;
+        
+        TE_Product__c pd = new TE_Product__c();
+        pd.Name = 'C20';
+        pd.Product_Type__c = 'Apartment';
+        insert pd;
+        
+        Project_Product__c ppr = new Project_Product__c();
+        ppr.name = 'ppr';
+        ppr.Project__c = objpr.id;
+        ppr.Product__c = pd.id;
+        ppr.Car_Park_Type_1__c = 'Open';
+        ppr.Car_Park_Count_1__c = 1;
+        ppr.Default_Customisation__c = 'Online';
+        ppr.Default_Specification__c = 'Green';
+        insert ppr;
+        
+        Sub_Product__c sb = new Sub_Product__c();
+        sb.name = 'C20a1';
+        sb.Project__c = objpr.id;
+        sb.Product__c = pd.id;
+        sb.Active__c = true;
+        sb.Status__c = 'Approved';
+        sb.Carpet_Area__c = 1650;
+        sb.Super_Builtup_Area__c = 2000;
+        sb.RERA_Carpet_Area__c = 1650;
+        sb.Saleable_Area__c = 2000;
+        sb.Builtup_Area__c = 1800;
+        insert sb; 
+        
+        Unit__c objPU1 = new Unit__c();    
+        
+        objPU1.Name = 'TestFive';      
+        objPU1.Project__c = objpr.Id;
+        objPU1.Unit_status__c='Available';
+        objPU1.Tower__c = t.Id;
+        objPU1.Active_Inactive__c = 'Active';
+        objPU1.Floor__c = 2;
+        objPU1.Product_Type__c = sb.id; 
+        objPU1.Floor__c = 2;
+        objPU1.Configuration__c = '1 BHK';
+        objPU1.TE_Product__c = pd.id;
+        objPU1.Additional_Land__c = 150;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor_Rise_PSF__c = 250;
+        objPU1.Customization_Charge_PSF__c = 0;
+        objPU1.Additional_Land_PSF__c = 100;
+        objPU1.Premium_1__c = 'View Premium';
+        objPU1.Premium_2__c = 'Ground Level Premium';
+        objPU1.View_Premium_PSF__c = 10;
+        objPU1.Vastu_Premium_PSF__c = 10;
+        objPU1.MBR_Premium_Garden_Orientation_PSF__c= 19;
+        objPU1.Ground_Level_Premium_PSF__c = 10;
+        objPU1.Permitted_Use__c = 'Commercial';
+        objPU1.Parent_Carpet_Area__c = 123;
+        objPU1.Parent_Saleable_Area__c = 234;
+        objPU1.Parent_Unit__c = 'Parent Unit';
+        objPU1.Parent_Unit_Plan__c = 'Unit Plan';
+        objPU1.TE_Product__c = pd.Id;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor__c = 4;
+        objPU1.Unit_Ownership__c = 'TE';
+        insert objPU1;
+        
+        Quotation__c qController = new Quotation__c();
+        qController.Opportunity__c = objOpportunity.Id;
+        qController.Unit__c = objPU1.Id;
+        qController.Quote_Status__c = 'Valid';
+        insert qController;
+        
+        Payment_Milestones__c pm = new Payment_Milestones__c();
+        pm.Quotation__c = qController.id;
+        pm.Milestone_Type_edit__c = 'Date Linked';
+        pm.Invoice_Date__c = system.today().addDays(5);
+        pm.Invoice_Due_Date__c = system.today().addDays(5);
+        insert pm;
+        
+        Booking__c b = new Booking__c();
+        b.Booking_Date__c = system.today();
+        b.Project__c = objpr.Id;
+        b.Opportunity__c = objOpportunity.Id;
+        b.Unit__c = objPU1.Id;
+        b.Audit_Approval_Date__c = system.today().addMonths(3);
+        b.status__c = 'Processed';
+        b.Quotation__c = qController.Id;
+        b.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b.Signed_Termsheet_Date__c = System.today();
+        insert b;
+        
+        objOpportunity.Booking__c = b.Id;
+        objOpportunity.Old_Booking__c = b.id;
+        update objOpportunity;
+        
+        Booking__c b1 = new Booking__c();
+        b1.Booking_Date__c = system.today();
+        b1.Project__c = objpr.Id;
+        b1.Opportunity__c = objOpportunity.Id;
+        b1.Unit__c = objPU1.Id;
+        b1.Audit_Approval_Date__c = system.today().addMonths(3);
+        b1.status__c = 'Processed';
+        b1.Quotation__c = qController.Id;
+        b1.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b1.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b1.Signed_Termsheet_Date__c = System.today();
+        insert b1;
+        
+        Receipt__c r1 = new Receipt__c();
+        r1.Cheque_DD_Amount_Rs__c = 200000;
+        r1.Cheque_DD__c = '908888';
+        r1.Cheque_DD_Date__c = system.today();
+        r1.SAP_Posting_Date__c = system.today();
+        r1.Project__c = objpr.Id;
+        r1.Project_Unit__c = objPU1.id;
+        r1.Opportunity__c = objOpportunity.Id;
+        r1.CheckReceipt__c = true;
+        r1.Token_Amount_Receipt__c = true;
+        r1.Physically_Cheque_Received__c = true;
+        r1.Approval_Status__c = 'Approved';
+        r1.Receipt_Date__c = system.today();
+        r1.DraweeBank__c = 'Axis Bank';
+        r1.Total_Amount__c = 200000;
+        r1.Amount_Rs__c = 200000;
+        r1.Amount_Advanced__c = 0;
+        r1.mode__c = 'Cheque';
+        r1.Currency__c = 'Indian Rupee';
+        r1.Booking__c = b.Id;
+        r1.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r1;
+        
+        Receipt__c cr = new Receipt__c();
+        cr.Cheque_DD_Amount_Rs__c = 200000;
+        cr.Cheque_DD__c = '908888';
+        cr.Cheque_DD_Date__c = system.today();
+        cr.SAP_Posting_Date__c = system.today();
+        cr.Project__c = objpr.Id;
+        cr.Project_Unit__c = objPU1.id;
+        cr.Opportunity__c = objOpportunity.Id;
+        cr.CheckReceipt__c = true;
+        cr.Token_Amount_Receipt__c = true;
+        cr.Physically_Cheque_Received__c = true;
+        cr.Approval_Status__c = 'Approved';
+        cr.Receipt_Date__c = system.today();
+        cr.DraweeBank__c = 'Axis Bank';
+        cr.Total_Amount__c = 200000;
+        cr.Amount_Rs__c = 200000;
+        cr.Amount_Advanced__c = 0;
+        cr.mode__c = 'Credit Note';
+        cr.Currency__c = 'Indian Rupee';
+        cr.Booking__c= b.Id;
+        cr.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert cr;
+        
+        cr.Is_Transferred__c = true;
+        update cr;
+        
+        Receipt__c r3 = new Receipt__c();
+        r3.Cheque_DD_Amount_Rs__c = 8401;
+        r3.Booking__c = b.id;
+        r3.Cheque_DD__c = '908881';
+        r3.Cheque_DD_Date__c = system.today();
+        r3.Project__c = objpr.Id;
+        r3.Project_Unit__c = objPU1.id;
+        r3.Opportunity__c = objOpportunity.Id;
+        r3.CheckReceipt__c = true;
+        r3.Physically_Cheque_Received__c = true;
+        r3.Approval_Status__c = 'Approved';
+        r3.Receipt_Date__c = system.today();
+        r3.DraweeBank__c = 'CITI';
+        r3.Total_Amount__c = 8401;
+        r3.Amount_Rs__c = 8401;
+        r3.Amount_Advanced__c = 0;
+        r3.mode__c = 'Cheque';
+        r3.Currency__c = 'Indian Rupee';
+        insert r3;
+        
+        r3.Reason_for_rejection_new__c = 'Accepted';
+        update r3;
+        
+        Receipt__c r4 = new Receipt__c();
+        r4.Cheque_DD_Amount_Rs__c = 8401;
+        r4.Booking__c = b.id;
+        r4.Cheque_DD__c = '908881';
+        r4.Cheque_DD_Date__c = system.today();
+        r4.Project__c = objpr.Id;
+        r4.Project_Unit__c = objPU1.id;
+        r4.Opportunity__c = objOpportunity.Id;
+        r4.CheckReceipt__c = true;
+        r4.Physically_Cheque_Received__c = true;
+        r4.Approval_Status__c = 'Approved';
+        r4.Receipt_Date__c = system.today();
+        r4.DraweeBank__c = 'CITI';
+        r4.Total_Amount__c = 8401;
+        r4.Amount_Rs__c = 8401;
+        r4.Amount_Advanced__c = 0;
+        r4.mode__c = 'Cheque';
+        r4.Currency__c = 'Indian Rupee';
+        r4.Reason_for_rejection_new__c = 'Accepted';
+        r4.SAP_Posting_Date__c = system.today();
+        insert r4;
+        
+        r4.Banking__c = 'Payment Failed - Insufficient Funds';
+        update r4;
+        
+        Receipt__c r5 = new Receipt__c();
+        r5.Cheque_DD_Amount_Rs__c = 8402;
+        r5.Booking__c = b.id;
+        r5.Cheque_DD__c = '908881';
+        r5.Cheque_DD_Date__c = system.today();
+        r5.Project__c = objpr.Id;
+        r5.Project_Unit__c = objPU1.id;
+        r5.Opportunity__c = objOpportunity.Id;
+        r5.CheckReceipt__c = true;
+        r5.Physically_Cheque_Received__c = true;
+        r5.Approval_Status__c = 'Approved';
+        r5.Receipt_Date__c = system.today();
+        r5.DraweeBank__c = 'CITI';
+        r5.Total_Amount__c = 8401;
+        r5.Amount_Rs__c = 8401;
+        r5.Amount_Advanced__c = 0;
+        r5.Currency__c = 'Indian Rupee';
+        r5.Reason_for_rejection_new__c = 'Accepted';
+        r5.SAP_Posting_Date__c = system.today();
+        r5.Mode__c = 'Credit Note';
+        r5.Sub_Type_Credit_Note__c = 'TDS';
+        r5.Drawn_in_favour_of__c = '';
+        insert r5;
+        r5.Banking__c = 'Payment Successful';
+        update r5;
+        
+        Receipt__c r6 = new Receipt__c();
+        r6.Cheque_DD_Amount_Rs__c = 200000;
+        r6.Cheque_DD__c = '908888';
+        r6.Cheque_DD_Date__c = system.today();
+        r6.SAP_Posting_Date__c = system.today();
+        r6.Project__c = objpr.Id;
+        r6.Project_Unit__c = objPU1.id;
+        r6.Opportunity__c = objOpportunity.Id;
+        r6.CheckReceipt__c = true;
+        r6.Token_Amount_Receipt__c = true;
+        r6.Physically_Cheque_Received__c = true;
+        r6.Approval_Status__c = 'Approved';
+        r6.Receipt_Date__c = system.today();
+        r6.DraweeBank__c = 'Axis Bank';
+        r6.Total_Amount__c = 200000;
+        r6.Amount_Rs__c = 200000;
+        r6.Amount_Advanced__c = 0;
+        r6.mode__c = 'Cheque';
+        r6.Currency__c = 'Indian Rupee';
+        r6.Booking__c = b.Id;
+        r6.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r6;
+        
+        Test.startTest();
+        
+        Customization_New__c cn = new Customization_New__c();
+        cn.Booking__c = b.Id;
+        
+        cn.Interior_Design_Head__c = objpr.Interior_Design_Head__c;
+        //cn.Name = 'abcd';
+        cn.Quotation__c = qController.Id;
+        cn.Special_Discount__c = '4';
+        cn.Total_Customization_Cost__c = 4633737;
+        cn.Status__c = 'Active';
+        insert cn;
+        
+        Customization_Master__c cm = new Customization_Master__c();
+        cm.Active__c = true;
+        cm.Tax_Rate__c = 'GST 18%';
+        cm.Name = 'Master';
+        insert cm;
+        
+        
+        
+        Customization_Details__c cd = new Customization_Details__c();
+        cd.Name = 'Customization';
+        cd.Sr_No__c = 1;
+        cd.Amount__c = 433435;
+        cd.Description__c = ' Description';
+        cd.Amount__c = 234;
+        cd.Active__c = true;
+        cd.Customization_Master_New__c = cm.Id;
+        
+        insert cd;
+        
+        Customization_Master_Line_Items__c cmli = new Customization_Master_Line_Items__c();
+        cmli.Active__c = true;
+        cmli.Amount__c = 2242;
+        cmli.Booking__c = b.Id;
+        cmli.Customization__c = cn.Id;
+        cmli.Name = 'Namea';
+        cmli.Quotation__c = qController.Id;
+        cmli.Sr_No__c = 1;
+        insert cmli;
+        
+        Customization_Payment_Milestones__c CPM = new Customization_Payment_Milestones__c();
+        CPM.Milestone_Name__c = 'ABCD';
+        CPM.Milestone_type__c = 'Time Linked';
+        CPM.Number_of_days_months__c = 14;
+        CPM.Milestone_Date_Calculation__c = 'Days';
+        CPM.Percentage__c = 100;
+        CPM.Amount__c = 100;
+        CPM.CGST__c = 9;
+        CPM.SGST__c = 9;
+        CPM.Demand_Raised__c = false;
+        CPM.Due_Date__c = system.today().addDays(5);
+        CPM.Booking__c = b.id;
+        CPM.Customization__c = cn.id;
+        
+        Insert CPM;
+        
+        ProjectCharges__c PCharge = new ProjectCharges__c();
+        PCharge.Project__c = objpr.Id;
+        PCharge.Name = 'Basic';
+        PCharge.Charge_Name__c = 'Basic';
+        PCharge.Active__c = true;
+        PCharge.Calculatedas__c = 'Rate List at Project Charges Level';
+        PCharge.ChargeBucket__c = 'Agreement Value';
+        PCharge.Tax_Rate__c = 'GST 12%';
+        PCharge.Area_Type__c = 'RERA Carpet Area';
+        PCharge.Discount_Applicable__c = True;
+        PCharge.Type__c = 'PSF';
+        insert PCharge;
+        
+        Tax_Slab__c taxS = new Tax_Slab__C();
+        taxS.From_Date__c = System.today().addDays(-10);
+        taxS.To_Date__c = System.today().addDays(10);
+        taxS.Tax_Name__c = 'GST 12%';
+        taxS.Tax1_Name__c = 'CGST';
+        taxS.Tax1_Code__c = 'CGST';
+        taxS.Tax1_Percentage__c = 9.00;
+        taxS.Taxable1_Percentage__c = 66.66667;
+        taxS.Tax_Rate__c = 'GST 12%';
+        taxS.Tax2_Name__c = 'SGST';
+        taxS.Tax2_Code__c = 'SGST';
+        taxS.Tax2_Percentage__c = 9.00;
+        taxS.Taxable2_Percentage__c = 66.66667;
+        taxS.SAP_code__c = 'H3';
+        insert taxS;
+        
+        Tax_Slab__c taxS1 = new Tax_Slab__C();
+        taxS1.From_Date__c = System.today().addDays(-10);
+        taxS1.To_Date__c = System.today().addDays(10);
+        taxS1.Charge_Type__c = 'Interior Charges';
+        taxS1.Tax_Name__c = 'GST 18%';
+        taxS1.Tax1_Name__c = 'CGST';
+        taxS1.Tax1_Code__c = 'CGST';
+        taxS1.Tax1_Percentage__c = 9.00;
+        taxS1.Taxable1_Percentage__c = 100.00000;
+        taxS1.Tax_Rate__c = 'GST 18%';
+        taxS1.Tax2_Name__c = 'SGST';
+        taxS1.Tax2_Code__c = 'SGST';
+        taxS1.Tax2_Percentage__c = 9.00;
+        taxS1.Taxable2_Percentage__c = 100.00000;
+        taxS1.SAP_code__c = 'H3';
+        insert taxS1;
+        
+        Payment_Milestones__c pm1 = new Payment_Milestones__c();
+        pm1.Milestone_Type__c = 'Date Linked';
+        pm1.Quotation__c = qController.id;
+        pm1.Time_Period__c = 'Days';
+        pm1.Number_Of_Days__c = 30;
+        pm1.Milestone_Due_Date__c = date.today();
+        pm1.is_demand_raised__c = false;
+        insert pm1;
+        
+        Demand__c d = new Demand__c();
+        d.Payment_Milestones__c = pm.id;
+        d.Quotation__c = qController.id;
+        d.Booking__c = b.id;
+        d.Total_Amount_Demanded__c = 4601540.00;
+        d.Total_Tax_Demanded__c = 818128.00;
+        d.Invoice_Date__c = date.today();
+        d.Charge_1_Lookup__c = PCharge.id;
+        d.Customization_Demand__c = false;
+        d.Bypass_Validation__c = true;
+        d.Due_Date__c = system.today();
+        insert d;
+        
+        d.Is_Transferred__c = true;
+        update d;
+        
+        Demand__c d1 = new Demand__c();
+        d1.Payment_Milestones__c = pm.id;
+        d1.Quotation__c = qController.id;
+        d1.Booking__c = b.id;
+        d1.Total_Amount_Demanded__c = 4601540.00;
+        d1.Total_Tax_Demanded__c = 818128.00;
+        d1.Invoice_Date__c = date.today();
+        d1.Charge_1_Lookup__c = PCharge.id;
+        d1.Debit_Type__c = 'Brokerage Reversal';
+        d1.Debit_Demanded__c = 58;
+        d1.Debit_CGST__c = 5;
+        d1.Debit_SGST__c = 5;
+        
+        d1.Accounting_Document_Number__c = '53871581';
+        insert d1;
+        
+        Demand__c d2 = new Demand__c();
+        d2.Payment_Milestones__c = pm.id;
+        d2.Quotation__c = qController.id;
+        d2.Booking__c = b.id;
+        d2.Total_Amount_Demanded__c = 4601540.00;
+        d2.Total_Tax_Demanded__c = 818128.00;
+        d2.Invoice_Date__c = date.today();
+        d2.Debit_Type__c = 'TDS';
+        d2.Debit_Demanded__c = 58;
+        d2.Debit_CGST__c = 5;
+        d2.Debit_SGST__c = 5;
+        
+        d2.Accounting_Document_Number__c = '5387152581';
+        insert d2;
+        
+        Demand__c dcust = new Demand__c();
+        dcust.Payment_Milestones__c = pm.id;
+        dcust.Quotation__c = qController.id;
+        dcust.Booking__c = b.id;
+        dcust.Total_Amount_Demanded__c = 4601540.00;
+        dcust.Total_Tax_Demanded__c = 818128.00;
+        dcust.Invoice_Date__c = date.today();
+        dcust.Charge_1_Lookup__c = PCharge.id;
+        dcust.Debit_Type__c = 'Customization Charge';
+        dcust.Debit_Demanded__c = 58;
+        dcust.Debit_CGST__c = 5;
+        dcust.Debit_SGST__c = 5;
+        dcust.Customization_Payment_Milestones__c = CPM.id;
+        dcust.Customization_Demand__c = true;
+        dcust.Due_Date__c = system.today();
+        insert dcust;
+        
+        
+        
+        Demand__c doc = new Demand__c();
+        doc.Payment_Milestones__c = pm.id;
+        doc.Quotation__c = qController.id;
+        doc.Booking__c = b.id;
+        doc.Total_Amount_Demanded__c = 4601540.00;
+        doc.Total_Tax_Demanded__c = 818128.00;
+        doc.Invoice_Date__c = date.today();
+        doc.Charge_1_Lookup__c = PCharge.id;
+        doc.Debit_Type__c = 'Brokerage Reversal';
+        doc.Debit_Demanded__c = 58;
+        doc.Debit_CGST__c = 5;
+        doc.Debit_SGST__c = 5;
+        doc.SAP_Posting_Date__c = system.today();
+        doc.Accounting_Document_Number__c = '53871581';
+        insert doc;
+        doc.Approval_Status_Debit_Note__c = 'Accepted';
+        update doc;
+        
+        
+        Applicant_Details__c a1 = new Applicant_Details__c();
+        a1.Salutation__c = 'Mr.';
+        a1.Name = 'First Man1';
+        a1.Booking__c = b.id;
+        a1.Applicant_Number__c = 'Primary Applicant';
+        a1.Date_of_incorporation__c = System.today();
+        a1.DOB__c = system.today();
+        a1.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a1.Pincode__c = 444344;
+        a1.Country__c = 'India';
+        a1.State__c = 'Maharashtra';
+        a1.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a1.City__c = 'Nagpur';
+        a1.GSTIN__c = '324134';
+        a1.Mailing_Country__c= null;
+        a1.Mailing_Address__c = 'abccc';
+        a1.Mailing_City__c = 'amravati';
+        a1.Mailing_Pincode__c= null;
+        a1.Mobile_Number__c = '9090909031';
+        a1.Email_Address__c = 'newman1@justnow3.com';
+        a1.Nationality__c = 'Indian';
+        a1.Type_Of_Applicant__c  = 'Individual Buyer';
+        a1.Subtype_Of_Applicant__c = 'Indian National';
+        a1.Pancard__c = true;
+        a1.Address_Proof__c = true;
+        a1.Address_Proof_Document__c = 'xyz';
+        a1.Address_Proof_Number__c = 'pqr';
+        a1.One_Passport_Size_Color_Photograph__c = true;
+        a1.Other_Details_Remarks__c = 'abcd';
+        a1.Of_Ownership__c = 100;
+        a1.street__c = 'a';
+        a1.Street_2__c = 'b';
+        a1.Street_3__c = 'c';
+        a1.Street_4__c = 'd';
+        a1.Street_5__c = 'e';
+        a1.Bypass_Validation_Applicant__c = true;
+        insert a1;
+        Applicant_Details__c a2 = new Applicant_Details__c();
+        a2.Salutation__c = 'Ms.';
+        a2.Name = 'First Man2';
+        a2.Booking__c = b1.id;
+        a2.Applicant_Number__c = 'Primary Applicant';
+        a2.Date_of_incorporation__c = System.today();
+        a2.DOB__c = system.today();
+        a2.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a2.Pincode__c = 444344;
+        a2.Country__c = 'India';
+        a2.State__c = 'Maharashtra';
+        a2.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a2.City__c = 'Nagpur';
+        a2.Mailing_Country__c= null;
+        a2.Mailing_Address__c = 'abccc';
+        a2.Mailing_City__c = 'amravati';
+        a2.Mailing_Pincode__c= null;
+        a2.Mobile_Number__c = '9090909535';
+        a2.Email_Address__c = 'newman1@justnow4.com';
+        a2.Nationality__c = 'Indian';
+        a2.Type_Of_Applicant__c  = 'Individual Buyer';
+        a2.Subtype_Of_Applicant__c = 'Indian National';
+        a2.Pancard__c = true;
+        a2.Address_Proof__c = true;
+        a2.Address_Proof_Document__c = 'xyz';
+        a2.Address_Proof_Number__c = 'pqr';
+        a2.One_Passport_Size_Color_Photograph__c = true;
+        a2.Other_Details_Remarks__c = 'abcd';
+        a2.Of_Ownership__c = 100;
+        a2.street__c = 'a';
+        a2.Street_2__c = 'b';
+        a2.Street_3__c = 'c';
+        a2.Street_4__c = 'd';
+        a2.Street_5__c = 'e';
+        a2.Bypass_Validation_Applicant__c = true;
+        insert a2;
+        
+        List<SendCustomizationDemand.flowInput> inputList = new List<SendCustomizationDemand.flowInput>();
+        SendCustomizationDemand.flowInput input;
+        input = new SendCustomizationDemand.flowInput();
+        input.currentRecordId = dcust.Id;
+        inputList.add(input);
+        /*List<SendDemandMailAndPDF.flowInput> inputListd = new List<SendDemandMailAndPDF.flowInput>();
+        SendDemandMailAndPDF.flowInput inputd;
+        inputd = new SendDemandMailAndPDF.flowInput();
+        inputd.currentRecordId = d.Id;
+        inputListd.add(inputd);*/
+        
+        set<Id> rc = new set<Id>();
+        rc.add(cr.id);
+        set<Id> rec = new set<Id>();
+        rec.add(r1.id);
+        set<Id> rec1 = new set<Id>();
+        rec1.add(r6.id);
+        set<id> did = new set<Id>();
+        did.add(d.id);
+        //did.add(d2.id);
+        set<id> dcustid = new set<Id>();
+        dcustid.add(dcust.id);
+        List<id> custid = new List<Id>();
+        custid.add(dcust.id);
+        String Dummy = '{"example":"test"}';
+      //  Test.startTest();
+        /*PageReference pRef = Page.TransferInvoicesAndReceipts;
+        Test.setCurrentPage(pRef);
+        ApexPages.currentPage().getParameters().put('id',b1.id);
+        TransferInvoicesAndReceiptsController transf = new TransferInvoicesAndReceiptsController();
+        transf.Transfer();*/
+        TEPiSalesOrderSAP.SalesOrder(b.Id);
+        SAPIntegrationServices.createCustomerInSAP(b.Id);
+        TEPIDocumentReversal.docreversal(rc);
+        TEPIDocumentReversal.docreversalDemand(doc.Id);
+        SAPIntegrationAPI.createReceiptInSAP(rec);
+        SAPIntegrationAPI.createReceiptInSAP(rec1);
+        
+        
+        TotalEnvPiCustomerinvCreMemo.CustomerCredMemo(rc);
+        TotalEnvPiCustomerinvCreMemo.CustomerInvMemo(did);
+        TotalEnvPiCustomerinvCreMemo.CustomerDebitInvMemo(dId);
+        TotalEnvPiCustomerinvCreMemo.CustomerInvCustomization(dcustid);
+        GenerateCurrencyToWord gctw = new GenerateCurrencyToWord();
+        gctw.convert(638455333);
+        /*totalEnvironmentPiCustomerreceipt.Testing t1 = new totalEnvironmentPiCustomerreceipt.Testing();
+        t1.test();
+        totalEnvironmentPiCreatecustomer.Testing t2 = new totalEnvironmentPiCreatecustomer.Testing();
+        t2.test();
+        SendCustomizationDemand.currentRecordID(inputList);*/
+        //SendDemandMailAndPDF.currentRecordID(inputListd);
+        Test.stopTest();
+        
+    }
+    @isTest
+    Public static void SAPIntegrationServicesTest3(){
+       
+       
+        // account creation 
+        Account objac = new Account();
+        objac.FirstName = 'name';
+        objac.LastName = 'Test';
+        objac.Correspondence_Address__c = 'Delhi';
+        objac.Phone = '1655246165' ;
+        objac.PersonEmail = 'test12322@stetig.in';
+        objac.PersonMobilePhone = '7875225343';
+        objac.Category__c = 'General';
+        //  objac.Unit__c = objPU1.Id;
+        insert objac;
+        // Project Creation
+        Project__c objpr = new Project__c();
+        objpr.Project_Code__c = 'T351';
+        objpr.Name = 'pname1';
+        objpr.Start_Date__c = System.today().addDays(-5);
+        objpr.Project_Stage__c='Launch1';
+        objpr.Address__c = '14013, Fantasy Land, Utopia, Planet Mars, OUTERWORLD CODE -11011';
+        objpr.Project_Property_Type__c = 'Residential';                      
+        objpr.NPV__c = 12;    
+        objpr.Future_NPV__c = 12;
+        objpr.Car_Park_Type_1__c = 'Open';
+        objpr.Charge_Value_1__c = 100000; 
+        objpr.Schedule_F_Property__c = 'Schdule F';
+        objpr.IDSA_Preamble__c = 'preamble';
+        objpr.Project_Code__c = '1000';
+        objpr.Company_Code__c = 2000;
+        objpr.Interior_Design_Head__c = userinfo.getUserId();
+        insert objpr;
+        
+        End_Time_for_Event__c ed = new End_Time_for_Event__c();
+        ed.Name = 'End Time Minutes';
+        ed.End_Minutes__c = 120;
+        insert ed;
+        
+        // opportunity creation              
+        Opportunity objOpportunity = new Opportunity();
+        objOpportunity.Name = 'Test';
+        objOpportunity.CloseDate = System.today();
+        objOpportunity.AccountId = objac.Id;           
+        objOpportunity.StageName = 'Qualification'; 
+        objOpportunity.Project__c = objpr.Id;
+        objOpportunity.Date_of_Agreement__c = System.today();
+        insert objOpportunity;
+        
+        
+        Cluster__c ph = new Cluster__c();
+        ph.Name = 'test phase';
+        ph.Project__c  = objpr.Id;
+        ph.MAHA_RERA_No__c = '12345';
+        ph.CompanyName_Escrow__c = 'ABCD';
+        ph.CompanyName_Tax__c = 'XYZ';
+    //    ph.Schedule_E_Property__c = 'Schedule E';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project Land';
+        ph.Schedule_A_Property__c = 'Schedule A';
+        ph.Schedule_B_Property__c = 'Schedule B';
+        ph.Schedule_C_Property__c = 'Schedule C';
+        ph.Schedule_D_Property__c = 'Schedule D';
+        ph.Schedule_F_Property__c = 'Schedule F';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project land';
+        ph.Plan_01_Master_Development__c = 'Plan 01';
+        ph.Plan_02_Residential_Development__c = 'Plan 02';
+        ph.Plan_03_Project__c = 'Plan 03';
+        ph.SAP_Project_Code__c = '3231';
+        ph.SAP_Plant_Code__c = '3637';
+        ph.Short_Key_for_a_House_Bank__c = '4244';
+        ph.Tax_House_Bank_Code__c = '57877';
+        insert ph;
+        
+        // tower creation 
+        Tower__c t = new Tower__c();
+        t.Name = 'Tower X';
+        t.Project__c = objpr.Id;
+        //t.RDS_Company_Code__c=objlglentity.Id;
+        t.Cluster__c= ph.Id;
+        insert t;
+        
+        TE_Product__c pd = new TE_Product__c();
+        pd.Name = 'C20';
+        pd.Product_Type__c = 'Apartment';
+        insert pd;
+        
+        Project_Product__c ppr = new Project_Product__c();
+        ppr.name = 'ppr';
+        ppr.Project__c = objpr.id;
+        ppr.Product__c = pd.id;
+        ppr.Car_Park_Type_1__c = 'Open';
+        ppr.Car_Park_Count_1__c = 1;
+        ppr.Default_Customisation__c = 'Online';
+        ppr.Default_Specification__c = 'Green';
+        insert ppr;
+        
+        Sub_Product__c sb = new Sub_Product__c();
+        sb.name = 'C20a1';
+        sb.Project__c = objpr.id;
+        sb.Product__c = pd.id;
+        sb.Active__c = true;
+        sb.Status__c = 'Approved';
+        sb.Carpet_Area__c = 1650;
+        sb.Super_Builtup_Area__c = 2000;
+        sb.RERA_Carpet_Area__c = 1650;
+        sb.Saleable_Area__c = 2000;
+        sb.Builtup_Area__c = 1800;
+        insert sb; 
+        
+        Unit__c objPU1 = new Unit__c();    
+        
+        objPU1.Name = 'TestFive';      
+        objPU1.Project__c = objpr.Id;
+        objPU1.Unit_status__c='Available';
+        objPU1.Tower__c = t.Id;
+        objPU1.Active_Inactive__c = 'Active';
+        objPU1.Floor__c = 2;
+        objPU1.Product_Type__c = sb.id; 
+        objPU1.Floor__c = 2;
+        objPU1.Configuration__c = '1 BHK';
+        objPU1.TE_Product__c = pd.id;
+        objPU1.Additional_Land__c = 150;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor_Rise_PSF__c = 250;
+        objPU1.Customization_Charge_PSF__c = 0;
+        objPU1.Additional_Land_PSF__c = 100;
+        objPU1.Premium_1__c = 'View Premium';
+        objPU1.Premium_2__c = 'Ground Level Premium';
+        objPU1.View_Premium_PSF__c = 10;
+        objPU1.Vastu_Premium_PSF__c = 10;
+        objPU1.MBR_Premium_Garden_Orientation_PSF__c= 19;
+        objPU1.Ground_Level_Premium_PSF__c = 10;
+        objPU1.Permitted_Use__c = 'Commercial';
+        objPU1.Parent_Carpet_Area__c = 123;
+        objPU1.Parent_Saleable_Area__c = 234;
+        objPU1.Parent_Unit__c = 'Parent Unit';
+        objPU1.Parent_Unit_Plan__c = 'Unit Plan';
+        objPU1.TE_Product__c = pd.Id;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor__c = 4;
+        objPU1.Unit_Ownership__c = 'TE';
+        insert objPU1;
+        
+        Quotation__c qController = new Quotation__c();
+        qController.Opportunity__c = objOpportunity.Id;
+        qController.Unit__c = objPU1.Id;
+        qController.Quote_Status__c = 'Valid';
+        insert qController;
+        
+        Payment_Milestones__c pm = new Payment_Milestones__c();
+        pm.Quotation__c = qController.id;
+        pm.Milestone_Type_edit__c = 'Date Linked';
+        pm.Invoice_Date__c = system.today().addDays(5);
+        pm.Invoice_Due_Date__c = system.today().addDays(5);
+        insert pm;
+        
+        Booking__c b = new Booking__c();
+        b.Booking_Date__c = system.today();
+        b.Project__c = objpr.Id;
+        b.Opportunity__c = objOpportunity.Id;
+        b.Unit__c = objPU1.Id;
+        b.Audit_Approval_Date__c = system.today().addMonths(3);
+        b.status__c = 'Processed';
+        b.Quotation__c = qController.Id;
+        b.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b.Signed_Termsheet_Date__c = System.today();
+        insert b;
+        
+        objOpportunity.Booking__c = b.Id;
+        objOpportunity.Old_Booking__c = b.id;
+        update objOpportunity;
+       
+        Booking__c b1 = new Booking__c();
+        b1.Booking_Date__c = system.today();
+        b1.Project__c = objpr.Id;
+        b1.Opportunity__c = objOpportunity.Id;
+        b1.Unit__c = objPU1.Id;
+        b1.Audit_Approval_Date__c = system.today().addMonths(3);
+        b1.status__c = 'Processed';
+        b1.Quotation__c = qController.Id;
+        b1.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b1.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b1.Signed_Termsheet_Date__c = System.today();
+        insert b1;
+        
+        Receipt__c r1 = new Receipt__c();
+        r1.Cheque_DD_Amount_Rs__c = 200000;
+        r1.Cheque_DD__c = '908888';
+        r1.Cheque_DD_Date__c = system.today();
+        r1.SAP_Posting_Date__c = system.today();
+        r1.Project__c = objpr.Id;
+        r1.Project_Unit__c = objPU1.id;
+        r1.Opportunity__c = objOpportunity.Id;
+        r1.CheckReceipt__c = true;
+        r1.Token_Amount_Receipt__c = true;
+        r1.Physically_Cheque_Received__c = true;
+        r1.Approval_Status__c = 'Approved';
+        r1.Receipt_Date__c = system.today();
+        r1.DraweeBank__c = 'Axis Bank';
+        r1.Total_Amount__c = 200000;
+        r1.Amount_Rs__c = 200000;
+        r1.Amount_Advanced__c = 0;
+        r1.mode__c = 'Cheque';
+        r1.Currency__c = 'Indian Rupee';
+        r1.Booking__c = b.Id;
+        r1.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r1;
+        
+        Receipt__c cr = new Receipt__c();
+        cr.Cheque_DD_Amount_Rs__c = 200000;
+        cr.Cheque_DD__c = '908888';
+        cr.Cheque_DD_Date__c = system.today();
+        cr.SAP_Posting_Date__c = system.today();
+        cr.Project__c = objpr.Id;
+        cr.Project_Unit__c = objPU1.id;
+        cr.Opportunity__c = objOpportunity.Id;
+        cr.CheckReceipt__c = true;
+        cr.Token_Amount_Receipt__c = true;
+        cr.Physically_Cheque_Received__c = true;
+        cr.Approval_Status__c = 'Approved';
+        cr.Receipt_Date__c = system.today();
+        cr.DraweeBank__c = 'Axis Bank';
+        cr.Total_Amount__c = 200000;
+        cr.Amount_Rs__c = 200000;
+        cr.Amount_Advanced__c = 0;
+        cr.mode__c = 'Credit Note';
+        cr.Currency__c = 'Indian Rupee';
+        cr.Booking__c= b.Id;
+        cr.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert cr;
+        
+        cr.Is_Transferred__c = true;
+        update cr;
+        
+        Receipt__c r3 = new Receipt__c();
+        r3.Cheque_DD_Amount_Rs__c = 8401;
+        r3.Booking__c = b.id;
+        r3.Cheque_DD__c = '908881';
+        r3.Cheque_DD_Date__c = system.today();
+        r3.Project__c = objpr.Id;
+        r3.Project_Unit__c = objPU1.id;
+        r3.Opportunity__c = objOpportunity.Id;
+        r3.CheckReceipt__c = true;
+        r3.Physically_Cheque_Received__c = true;
+        r3.Approval_Status__c = 'Approved';
+        r3.Receipt_Date__c = system.today();
+        r3.DraweeBank__c = 'CITI';
+        r3.Total_Amount__c = 8401;
+        r3.Amount_Rs__c = 8401;
+        r3.Amount_Advanced__c = 0;
+        r3.mode__c = 'Cheque';
+        r3.Currency__c = 'Indian Rupee';
+        insert r3;
+        
+        r3.Reason_for_rejection_new__c = 'Accepted';
+        update r3;
+        
+        Receipt__c r4 = new Receipt__c();
+        r4.Cheque_DD_Amount_Rs__c = 8401;
+        r4.Booking__c = b.id;
+        r4.Cheque_DD__c = '908881';
+        r4.Cheque_DD_Date__c = system.today();
+        r4.Project__c = objpr.Id;
+        r4.Project_Unit__c = objPU1.id;
+        r4.Opportunity__c = objOpportunity.Id;
+        r4.CheckReceipt__c = true;
+        r4.Physically_Cheque_Received__c = true;
+        r4.Approval_Status__c = 'Approved';
+        r4.Receipt_Date__c = system.today();
+        r4.DraweeBank__c = 'CITI';
+        r4.Total_Amount__c = 8401;
+        r4.Amount_Rs__c = 8401;
+        r4.Amount_Advanced__c = 0;
+        r4.mode__c = 'Cheque';
+        r4.Currency__c = 'Indian Rupee';
+        r4.Reason_for_rejection_new__c = 'Accepted';
+        r4.SAP_Posting_Date__c = system.today();
+        insert r4;
+        
+        r4.Banking__c = 'Payment Failed - Insufficient Funds';
+        update r4;
+        
+        Receipt__c r5 = new Receipt__c();
+        r5.Cheque_DD_Amount_Rs__c = 8402;
+        r5.Booking__c = b.id;
+        r5.Cheque_DD__c = '908881';
+        r5.Cheque_DD_Date__c = system.today();
+        r5.Project__c = objpr.Id;
+        r5.Project_Unit__c = objPU1.id;
+        r5.Opportunity__c = objOpportunity.Id;
+        r5.CheckReceipt__c = true;
+        r5.Physically_Cheque_Received__c = true;
+        r5.Approval_Status__c = 'Approved';
+        r5.Receipt_Date__c = system.today();
+        r5.DraweeBank__c = 'CITI';
+        r5.Total_Amount__c = 8401;
+        r5.Amount_Rs__c = 8401;
+        r5.Amount_Advanced__c = 0;
+        r5.Currency__c = 'Indian Rupee';
+        r5.Reason_for_rejection_new__c = 'Accepted';
+        r5.SAP_Posting_Date__c = system.today();
+        r5.Mode__c = 'Credit Note';
+        r5.Sub_Type_Credit_Note__c = 'TDS';
+        r5.Drawn_in_favour_of__c = '';
+        insert r5;
+        r5.Banking__c = 'Payment Successful';
+        update r5;
+        
+        Receipt__c r6 = new Receipt__c();
+        r6.Cheque_DD_Amount_Rs__c = 200000;
+        r6.Cheque_DD__c = '908888';
+        r6.Cheque_DD_Date__c = system.today();
+        r6.SAP_Posting_Date__c = system.today();
+        r6.Project__c = objpr.Id;
+        r6.Project_Unit__c = objPU1.id;
+        r6.Opportunity__c = objOpportunity.Id;
+        r6.CheckReceipt__c = true;
+        r6.Token_Amount_Receipt__c = true;
+        r6.Physically_Cheque_Received__c = true;
+        r6.Approval_Status__c = 'Approved';
+        r6.Receipt_Date__c = system.today();
+        r6.DraweeBank__c = 'Axis Bank';
+        r6.Total_Amount__c = 200000;
+        r6.Amount_Rs__c = 200000;
+        r6.Amount_Advanced__c = 0;
+        r6.mode__c = 'Cheque';
+        r6.Currency__c = 'Indian Rupee';
+        r6.Booking__c = b.Id;
+        r6.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r6;
+        
+        Test.startTest(); 
+        
+        Customization_New__c cn = new Customization_New__c();
+        cn.Booking__c = b.Id;
+        
+        cn.Interior_Design_Head__c = objpr.Interior_Design_Head__c;
+        //cn.Name = 'abcd';
+        cn.Quotation__c = qController.Id;
+        cn.Special_Discount__c = '4';
+        cn.Total_Customization_Cost__c = 4633737;
+        cn.Status__c = 'Active';
+        insert cn;
+        
+        Customization_Master__c cm = new Customization_Master__c();
+        cm.Active__c = true;
+        cm.Tax_Rate__c = 'GST 18%';
+        cm.Name = 'Master';
+        insert cm;
+        
+        
+        
+        Customization_Details__c cd = new Customization_Details__c();
+        cd.Name = 'Customization';
+        cd.Sr_No__c = 1;
+        cd.Amount__c = 433435;
+        cd.Description__c = ' Description';
+        cd.Amount__c = 234;
+        cd.Active__c = true;
+        cd.Customization_Master_New__c = cm.Id;
+        
+        insert cd;
+        
+        Customization_Master_Line_Items__c cmli = new Customization_Master_Line_Items__c();
+        cmli.Active__c = true;
+        cmli.Amount__c = 2242;
+        cmli.Booking__c = b.Id;
+        cmli.Customization__c = cn.Id;
+        cmli.Name = 'Namea';
+        cmli.Quotation__c = qController.Id;
+        cmli.Sr_No__c = 1;
+        insert cmli;
+        
+        Customization_Payment_Milestones__c CPM = new Customization_Payment_Milestones__c();
+        CPM.Milestone_Name__c = 'ABCD';
+        CPM.Milestone_type__c = 'Time Linked';
+        CPM.Number_of_days_months__c = 14;
+        CPM.Milestone_Date_Calculation__c = 'Days';
+        CPM.Percentage__c = 100;
+        CPM.Amount__c = 100;
+        CPM.CGST__c = 9;
+        CPM.SGST__c = 9;
+        CPM.Demand_Raised__c = false;
+        CPM.Due_Date__c = system.today().addDays(5);
+        CPM.Booking__c = b.id;
+        CPM.Customization__c = cn.id;
+        
+        Insert CPM;
+        
+        ProjectCharges__c PCharge = new ProjectCharges__c();
+        PCharge.Project__c = objpr.Id;
+        PCharge.Name = 'Basic';
+        PCharge.Charge_Name__c = 'Basic';
+        PCharge.Active__c = true;
+        PCharge.Calculatedas__c = 'Rate List at Project Charges Level';
+        PCharge.ChargeBucket__c = 'Agreement Value';
+        PCharge.Tax_Rate__c = 'GST 12%';
+        PCharge.Area_Type__c = 'RERA Carpet Area';
+        PCharge.Discount_Applicable__c = True;
+        PCharge.Type__c = 'PSF';
+        insert PCharge;
+        
+        Tax_Slab__c taxS = new Tax_Slab__C();
+        taxS.From_Date__c = System.today().addDays(-10);
+        taxS.To_Date__c = System.today().addDays(10);
+        taxS.Tax_Name__c = 'GST 12%';
+        taxS.Tax1_Name__c = 'CGST';
+        taxS.Tax1_Code__c = 'CGST';
+        taxS.Tax1_Percentage__c = 9.00;
+        taxS.Taxable1_Percentage__c = 66.66667;
+        taxS.Tax_Rate__c = 'GST 12%';
+        taxS.Tax2_Name__c = 'SGST';
+        taxS.Tax2_Code__c = 'SGST';
+        taxS.Tax2_Percentage__c = 9.00;
+        taxS.Taxable2_Percentage__c = 66.66667;
+        taxS.SAP_code__c = 'H3';
+        insert taxS;
+        
+        Tax_Slab__c taxS1 = new Tax_Slab__C();
+        taxS1.From_Date__c = System.today().addDays(-10);
+        taxS1.To_Date__c = System.today().addDays(10);
+        taxS1.Charge_Type__c = 'Interior Charges';
+        taxS1.Tax_Name__c = 'GST 18%';
+        taxS1.Tax1_Name__c = 'CGST';
+        taxS1.Tax1_Code__c = 'CGST';
+        taxS1.Tax1_Percentage__c = 9.00;
+        taxS1.Taxable1_Percentage__c = 100.00000;
+        taxS1.Tax_Rate__c = 'GST 18%';
+        taxS1.Tax2_Name__c = 'SGST';
+        taxS1.Tax2_Code__c = 'SGST';
+        taxS1.Tax2_Percentage__c = 9.00;
+        taxS1.Taxable2_Percentage__c = 100.00000;
+        taxS1.SAP_code__c = 'H3';
+        insert taxS1;
+        
+        Payment_Milestones__c pm1 = new Payment_Milestones__c();
+        pm1.Milestone_Type__c = 'Date Linked';
+        pm1.Quotation__c = qController.id;
+        pm1.Time_Period__c = 'Days';
+        pm1.Number_Of_Days__c = 30;
+        pm1.Milestone_Due_Date__c = date.today();
+        pm1.is_demand_raised__c = false;
+        insert pm1;
+        
+        List<Demand__c> dlist = new List<Demand__c>();
+        Demand__c d = new Demand__c();
+        d.Payment_Milestones__c = pm.id;
+        d.Quotation__c = qController.id;
+        d.Booking__c = b.id;
+        d.Total_Amount_Demanded__c = 4601540.00;
+        d.Total_Tax_Demanded__c = 818128.00;
+        d.Invoice_Date__c = date.today();
+        d.Charge_1_Lookup__c = PCharge.id;
+        d.Customization_Demand__c = false;
+        d.Bypass_Validation__c = true;
+        d.Due_Date__c = system.today();
+      //  insert d;
+        dlist.add(d);
+        
+    //    d.Is_Transferred__c = true;
+    //    update d;
+        
+        Demand__c d1 = new Demand__c();
+        d1.Payment_Milestones__c = pm.id;
+        d1.Quotation__c = qController.id;
+        d1.Booking__c = b.id;
+        d1.Total_Amount_Demanded__c = 4601540.00;
+        d1.Total_Tax_Demanded__c = 818128.00;
+        d1.Invoice_Date__c = date.today();
+        d1.Charge_1_Lookup__c = PCharge.id;
+        d1.Debit_Type__c = 'Brokerage Reversal';
+        d1.Debit_Demanded__c = 58;
+        d1.Debit_CGST__c = 5;
+        d1.Debit_SGST__c = 5;
+        
+        d1.Accounting_Document_Number__c = '53871581';
+    //    insert d1;
+        dlist.add(d1);
+        
+        Demand__c d2 = new Demand__c();
+        d2.Payment_Milestones__c = pm.id;
+        d2.Quotation__c = qController.id;
+        d2.Booking__c = b.id;
+        d2.Total_Amount_Demanded__c = 4601540.00;
+        d2.Total_Tax_Demanded__c = 818128.00;
+        d2.Invoice_Date__c = date.today();
+        d2.Debit_Type__c = 'TDS';
+        d2.Debit_Demanded__c = 58;
+        d2.Debit_CGST__c = 5;
+        d2.Debit_SGST__c = 5;
+        
+        d2.Accounting_Document_Number__c = '5387152581';
+      //  insert d2;
+        dlist.add(d2);
+        
+        Demand__c dcust = new Demand__c();
+        dcust.Payment_Milestones__c = pm.id;
+        dcust.Quotation__c = qController.id;
+        dcust.Booking__c = b.id;
+        dcust.Total_Amount_Demanded__c = 4601540.00;
+        dcust.Total_Tax_Demanded__c = 818128.00;
+        dcust.Invoice_Date__c = date.today();
+        dcust.Charge_1_Lookup__c = PCharge.id;
+        dcust.Debit_Type__c = 'Customization Charge';
+        dcust.Debit_Demanded__c = 58;
+        dcust.Debit_CGST__c = 5;
+        dcust.Debit_SGST__c = 5;
+        dcust.Customization_Payment_Milestones__c = CPM.id;
+        dcust.Customization_Demand__c = true;
+        dcust.Due_Date__c = system.today();
+     //   insert dcust;
+        dlist.add(dcust);
+        
+        
+        Demand__c doc = new Demand__c();
+        doc.Payment_Milestones__c = pm.id;
+        doc.Quotation__c = qController.id;
+        doc.Booking__c = b.id;
+        doc.Total_Amount_Demanded__c = 4601540.00;
+        doc.Total_Tax_Demanded__c = 818128.00;
+        doc.Invoice_Date__c = date.today();
+        doc.Charge_1_Lookup__c = PCharge.id;
+        doc.Debit_Type__c = 'Brokerage Reversal';
+        doc.Debit_Demanded__c = 58;
+        doc.Debit_CGST__c = 5;
+        doc.Debit_SGST__c = 5;
+        doc.SAP_Posting_Date__c = system.today();
+        doc.Accounting_Document_Number__c = '53871581';
+    //    insert doc;
+        dlist.add(doc);
+        insert dlist;
+        
+        d.Is_Transferred__c = true;
+        update d;
+        doc.Approval_Status_Debit_Note__c = 'Accepted';
+        update doc;
+        
+        
+        Applicant_Details__c a1 = new Applicant_Details__c();
+        a1.Salutation__c = 'Mr.';
+        a1.Name = 'First Man1';
+        a1.Booking__c = b.id;
+        a1.Applicant_Number__c = 'Primary Applicant';
+        a1.Date_of_incorporation__c = System.today();
+        a1.DOB__c = system.today();
+        a1.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a1.Pincode__c = 444344;
+        a1.Country__c = 'India';
+        a1.State__c = 'Maharashtra';
+        a1.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a1.City__c = 'Nagpur';
+        a1.GSTIN__c = '324134';
+        a1.Mailing_Country__c= null;
+        a1.Mailing_Address__c = 'abccc';
+        a1.Mailing_City__c = 'amravati';
+        a1.Mailing_Pincode__c= null;
+        a1.Mobile_Number__c = '9090909031';
+        a1.Email_Address__c = 'newman1@justnow3.com';
+        a1.Nationality__c = 'Indian';
+        a1.Type_Of_Applicant__c  = 'Individual Buyer';
+        a1.Subtype_Of_Applicant__c = 'Indian National';
+        a1.Pancard__c = true;
+        a1.Address_Proof__c = true;
+        a1.Address_Proof_Document__c = 'xyz';
+        a1.Address_Proof_Number__c = 'pqr';
+        a1.One_Passport_Size_Color_Photograph__c = true;
+        a1.Other_Details_Remarks__c = 'abcd';
+        a1.Of_Ownership__c = 100;
+        a1.street__c = 'a';
+        a1.Street_2__c = 'b';
+        a1.Street_3__c = 'c';
+        a1.Street_4__c = 'd';
+        a1.Street_5__c = 'e';
+        a1.Bypass_Validation_Applicant__c = true;
+        insert a1;
+        Applicant_Details__c a2 = new Applicant_Details__c();
+        a2.Salutation__c = 'Ms.';
+        a2.Name = 'First Man2';
+        a2.Booking__c = b1.id;
+        a2.Applicant_Number__c = 'Primary Applicant';
+        a2.Date_of_incorporation__c = System.today();
+        a2.DOB__c = system.today();
+        a2.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a2.Pincode__c = 444344;
+        a2.Country__c = 'India';
+        a2.State__c = 'Maharashtra';
+        a2.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a2.City__c = 'Nagpur';
+        a2.Mailing_Country__c= null;
+        a2.Mailing_Address__c = 'abccc';
+        a2.Mailing_City__c = 'amravati';
+        a2.Mailing_Pincode__c= null;
+        a2.Mobile_Number__c = '9090909535';
+        a2.Email_Address__c = 'newman1@justnow4.com';
+        a2.Nationality__c = 'Indian';
+        a2.Type_Of_Applicant__c  = 'Individual Buyer';
+        a2.Subtype_Of_Applicant__c = 'Indian National';
+        a2.Pancard__c = true;
+        a2.Address_Proof__c = true;
+        a2.Address_Proof_Document__c = 'xyz';
+        a2.Address_Proof_Number__c = 'pqr';
+        a2.One_Passport_Size_Color_Photograph__c = true;
+        a2.Other_Details_Remarks__c = 'abcd';
+        a2.Of_Ownership__c = 100;
+        a2.street__c = 'a';
+        a2.Street_2__c = 'b';
+        a2.Street_3__c = 'c';
+        a2.Street_4__c = 'd';
+        a2.Street_5__c = 'e';
+        a2.Bypass_Validation_Applicant__c = true;
+        insert a2;
+        
+        List<SendCustomizationDemand.flowInput> inputList = new List<SendCustomizationDemand.flowInput>();
+        SendCustomizationDemand.flowInput input;
+        input = new SendCustomizationDemand.flowInput();
+        input.currentRecordId = dcust.Id;
+        inputList.add(input);
+        /*List<SendDemandMailAndPDF.flowInput> inputListd = new List<SendDemandMailAndPDF.flowInput>();
+        SendDemandMailAndPDF.flowInput inputd;
+        inputd = new SendDemandMailAndPDF.flowInput();
+        inputd.currentRecordId = d.Id;
+        inputListd.add(inputd);*/
+        
+        set<Id> rc = new set<Id>();
+        rc.add(cr.id);
+        set<Id> rec = new set<Id>();
+        rec.add(r1.id);
+        set<Id> rec1 = new set<Id>();
+        rec1.add(r6.id);
+        set<id> did = new set<Id>();
+        did.add(d.id);
+        //did.add(d2.id);
+        set<id> dcustid = new set<Id>();
+        dcustid.add(dcust.id);
+        List<id> custid = new List<Id>();
+        custid.add(dcust.id);
+        String Dummy = '{"example":"test"}';
+      //  Test.startTest();
+        /*PageReference pRef = Page.TransferInvoicesAndReceipts;
+        Test.setCurrentPage(pRef);
+        ApexPages.currentPage().getParameters().put('id',b1.id);
+        TransferInvoicesAndReceiptsController transf = new TransferInvoicesAndReceiptsController();
+        transf.Transfer();*/
+        
+        totalEnvironmentPiCustomerreceipt.Testing t1 = new totalEnvironmentPiCustomerreceipt.Testing();
+        t1.test();
+        totalEnvironmentPiCreatecustomer.Testing t2 = new totalEnvironmentPiCreatecustomer.Testing();
+        t2.test();
+        SendCustomizationDemand.currentRecordID(inputList);
+        //SendDemandMailAndPDF.currentRecordID(inputListd);
+        Test.stopTest();
+        
+    }
+    @isTest
+    Public static void SAPIntegrationServicesTest4(){
+      
+              
+        // account creation 
+        Account objac = new Account();
+        objac.FirstName = 'name';
+        objac.LastName = 'Test';
+        objac.Correspondence_Address__c = 'Delhi';
+        objac.Phone = '1655246165' ;
+        objac.PersonEmail = 'test12322@stetig.in';
+        objac.PersonMobilePhone = '7875225343';
+        objac.Category__c = 'General';
+        //  objac.Unit__c = objPU1.Id;
+        insert objac;
+        // Project Creation
+        Project__c objpr = new Project__c();
+        objpr.Project_Code__c = 'T351';
+        objpr.Name = 'pname1';
+        objpr.Start_Date__c = System.today().addDays(-5);
+        objpr.Project_Stage__c='Launch1';
+        objpr.Address__c = '14013, Fantasy Land, Utopia, Planet Mars, OUTERWORLD CODE -11011';
+        objpr.Project_Property_Type__c = 'Residential';                      
+        objpr.NPV__c = 12;    
+        objpr.Future_NPV__c = 12;
+        objpr.Car_Park_Type_1__c = 'Open';
+        objpr.Charge_Value_1__c = 100000; 
+        objpr.Schedule_F_Property__c = 'Schdule F';
+        objpr.IDSA_Preamble__c = 'preamble';
+        objpr.Project_Code__c = '1000';
+        objpr.Company_Code__c = 2000;
+        objpr.Interior_Design_Head__c = userinfo.getUserId();
+        insert objpr;
+        
+        End_Time_for_Event__c ed = new End_Time_for_Event__c();
+        ed.Name = 'End Time Minutes';
+        ed.End_Minutes__c = 120;
+        insert ed;
+        
+        // opportunity creation              
+        Opportunity objOpportunity = new Opportunity();
+        objOpportunity.Name = 'Test';
+        objOpportunity.CloseDate = System.today();
+        objOpportunity.AccountId = objac.Id;           
+        objOpportunity.StageName = 'Qualification'; 
+        objOpportunity.Project__c = objpr.Id;
+        objOpportunity.Date_of_Agreement__c = System.today();
+        insert objOpportunity;
+        
+        
+        Cluster__c ph = new Cluster__c();
+        ph.Name = 'test phase';
+        ph.Project__c  = objpr.Id;
+        ph.MAHA_RERA_No__c = '12345';
+        ph.CompanyName_Escrow__c = 'ABCD';
+        ph.CompanyName_Tax__c = 'XYZ';
+     //   ph.Schedule_E_Property__c = 'Schedule E';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project Land';
+        ph.Schedule_A_Property__c = 'Schedule A';
+        ph.Schedule_B_Property__c = 'Schedule B';
+        ph.Schedule_C_Property__c = 'Schedule C';
+        ph.Schedule_D_Property__c = 'Schedule D';
+        ph.Schedule_F_Property__c = 'Schedule F';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project land';
+        ph.Plan_01_Master_Development__c = 'Plan 01';
+        ph.Plan_02_Residential_Development__c = 'Plan 02';
+        ph.Plan_03_Project__c = 'Plan 03';
+        ph.SAP_Project_Code__c = '3231';
+        ph.SAP_Plant_Code__c = '3637';
+        ph.Short_Key_for_a_House_Bank__c = '4244';
+        ph.Tax_House_Bank_Code__c = '57877';
+        insert ph;
+        
+        // tower creation 
+        Tower__c t = new Tower__c();
+        t.Name = 'Tower X';
+        t.Project__c = objpr.Id;
+        //t.RDS_Company_Code__c=objlglentity.Id;
+        t.Cluster__c= ph.Id;
+        insert t;
+        
+        TE_Product__c pd = new TE_Product__c();
+        pd.Name = 'C20';
+        pd.Product_Type__c = 'Apartment';
+        insert pd;
+        
+        Project_Product__c ppr = new Project_Product__c();
+        ppr.name = 'ppr';
+        ppr.Project__c = objpr.id;
+        ppr.Product__c = pd.id;
+        ppr.Car_Park_Type_1__c = 'Open';
+        ppr.Car_Park_Count_1__c = 1;
+        ppr.Default_Customisation__c = 'Online';
+        ppr.Default_Specification__c = 'Green';
+        insert ppr;
+        
+        Sub_Product__c sb = new Sub_Product__c();
+        sb.name = 'C20a1';
+        sb.Project__c = objpr.id;
+        sb.Product__c = pd.id;
+        sb.Active__c = true;
+        sb.Status__c = 'Approved';
+        sb.Carpet_Area__c = 1650;
+        sb.Super_Builtup_Area__c = 2000;
+        sb.RERA_Carpet_Area__c = 1650;
+        sb.Saleable_Area__c = 2000;
+        sb.Builtup_Area__c = 1800;
+        insert sb; 
+        
+        Unit__c objPU1 = new Unit__c();    
+        
+        objPU1.Name = 'TestFive';      
+        objPU1.Project__c = objpr.Id;
+        objPU1.Unit_status__c='Available';
+        objPU1.Tower__c = t.Id;
+        objPU1.Active_Inactive__c = 'Active';
+        objPU1.Floor__c = 2;
+        objPU1.Product_Type__c = sb.id; 
+        objPU1.Floor__c = 2;
+        objPU1.Configuration__c = '1 BHK';
+        objPU1.TE_Product__c = pd.id;
+        objPU1.Additional_Land__c = 150;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor_Rise_PSF__c = 250;
+        objPU1.Customization_Charge_PSF__c = 0;
+        objPU1.Additional_Land_PSF__c = 100;
+        objPU1.Premium_1__c = 'View Premium';
+        objPU1.Premium_2__c = 'Ground Level Premium';
+        objPU1.View_Premium_PSF__c = 10;
+        objPU1.Vastu_Premium_PSF__c = 10;
+        objPU1.MBR_Premium_Garden_Orientation_PSF__c= 19;
+        objPU1.Ground_Level_Premium_PSF__c = 10;
+        objPU1.Permitted_Use__c = 'Commercial';
+        objPU1.Parent_Carpet_Area__c = 123;
+        objPU1.Parent_Saleable_Area__c = 234;
+        objPU1.Parent_Unit__c = 'Parent Unit';
+        objPU1.Parent_Unit_Plan__c = 'Unit Plan';
+        objPU1.TE_Product__c = pd.Id;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor__c = 4;
+        objPU1.Unit_Ownership__c = 'TE';
+        insert objPU1;
+        
+        Quotation__c qController = new Quotation__c();
+        qController.Opportunity__c = objOpportunity.Id;
+        qController.Unit__c = objPU1.Id;
+        qController.Quote_Status__c = 'Valid';
+        insert qController;
+        
+        Payment_Milestones__c pm = new Payment_Milestones__c();
+        pm.Quotation__c = qController.id;
+        pm.Milestone_Type_edit__c = 'Date Linked';
+        pm.Invoice_Date__c = system.today().addDays(5);
+        pm.Invoice_Due_Date__c = system.today().addDays(5);
+        insert pm;
+        
+        Booking__c b = new Booking__c();
+        b.Booking_Date__c = system.today();
+        b.Project__c = objpr.Id;
+        b.Opportunity__c = objOpportunity.Id;
+        b.Unit__c = objPU1.Id;
+        b.Audit_Approval_Date__c = system.today().addMonths(3);
+        b.status__c = 'Processed';
+        b.Quotation__c = qController.Id;
+        b.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b.Signed_Termsheet_Date__c = System.today();
+        insert b;
+        
+        objOpportunity.Booking__c = b.Id;
+        objOpportunity.Old_Booking__c = b.id;
+        update objOpportunity;
+      Test.startTest();  
+        
+        
+        Receipt__c r1 = new Receipt__c();
+        r1.Cheque_DD_Amount_Rs__c = 200000;
+        r1.Cheque_DD__c = '908888';
+        r1.Cheque_DD_Date__c = system.today();
+        r1.SAP_Posting_Date__c = system.today();
+        r1.Project__c = objpr.Id;
+        r1.Project_Unit__c = objPU1.id;
+        r1.Opportunity__c = objOpportunity.Id;
+        r1.CheckReceipt__c = true;
+        r1.Token_Amount_Receipt__c = true;
+        r1.Physically_Cheque_Received__c = true;
+        r1.Approval_Status__c = 'Approved';
+        r1.Receipt_Date__c = system.today();
+        r1.DraweeBank__c = 'Axis Bank';
+        r1.Total_Amount__c = 200000;
+        r1.Amount_Rs__c = 200000;
+        r1.Amount_Advanced__c = 0;
+        r1.mode__c = 'Cheque';
+        r1.Currency__c = 'Indian Rupee';
+        r1.Booking__c = b.Id;
+        r1.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r1;
+        
+        Receipt__c cr = new Receipt__c();
+        cr.Cheque_DD_Amount_Rs__c = 200000;
+        cr.Cheque_DD__c = '908888';
+        cr.Cheque_DD_Date__c = system.today();
+        cr.SAP_Posting_Date__c = system.today();
+        cr.Project__c = objpr.Id;
+        cr.Project_Unit__c = objPU1.id;
+        cr.Opportunity__c = objOpportunity.Id;
+        cr.CheckReceipt__c = true;
+        cr.Token_Amount_Receipt__c = true;
+        cr.Physically_Cheque_Received__c = true;
+        cr.Approval_Status__c = 'Approved';
+        cr.Receipt_Date__c = system.today();
+        cr.DraweeBank__c = 'Axis Bank';
+        cr.Total_Amount__c = 200000;
+        cr.Amount_Rs__c = 200000;
+        cr.Amount_Advanced__c = 0;
+        cr.mode__c = 'Credit Note';
+        cr.Currency__c = 'Indian Rupee';
+        cr.Booking__c= b.Id;
+        cr.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert cr;
+        
+        cr.Is_Transferred__c = true;
+        update cr;
+        
+        Receipt__c r3 = new Receipt__c();
+        r3.Cheque_DD_Amount_Rs__c = 8401;
+        r3.Booking__c = b.id;
+        r3.Cheque_DD__c = '908881';
+        r3.Cheque_DD_Date__c = system.today();
+        r3.Project__c = objpr.Id;
+        r3.Project_Unit__c = objPU1.id;
+        r3.Opportunity__c = objOpportunity.Id;
+        r3.CheckReceipt__c = true;
+        r3.Physically_Cheque_Received__c = true;
+        r3.Approval_Status__c = 'Approved';
+        r3.Receipt_Date__c = system.today();
+        r3.DraweeBank__c = 'CITI';
+        r3.Total_Amount__c = 8401;
+        r3.Amount_Rs__c = 8401;
+        r3.Amount_Advanced__c = 0;
+        r3.mode__c = 'Cheque';
+        r3.Currency__c = 'Indian Rupee';
+        insert r3;
+        
+        r3.Reason_for_rejection_new__c = 'Accepted';
+        update r3;
+        
+        Receipt__c r4 = new Receipt__c();
+        r4.Cheque_DD_Amount_Rs__c = 8401;
+        r4.Booking__c = b.id;
+        r4.Cheque_DD__c = '908881';
+        r4.Cheque_DD_Date__c = system.today();
+        r4.Project__c = objpr.Id;
+        r4.Project_Unit__c = objPU1.id;
+        r4.Opportunity__c = objOpportunity.Id;
+        r4.CheckReceipt__c = true;
+        r4.Physically_Cheque_Received__c = true;
+        r4.Approval_Status__c = 'Approved';
+        r4.Receipt_Date__c = system.today();
+        r4.DraweeBank__c = 'CITI';
+        r4.Total_Amount__c = 8401;
+        r4.Amount_Rs__c = 8401;
+        r4.Amount_Advanced__c = 0;
+        r4.mode__c = 'Cheque';
+        r4.Currency__c = 'Indian Rupee';
+        r4.Reason_for_rejection_new__c = 'Accepted';
+        r4.SAP_Posting_Date__c = system.today();
+        insert r4;
+        
+        r4.Banking__c = 'Payment Failed - Insufficient Funds';
+        update r4;
+        
+        Receipt__c r5 = new Receipt__c();
+        r5.Cheque_DD_Amount_Rs__c = 8402;
+        r5.Booking__c = b.id;
+        r5.Cheque_DD__c = '908881';
+        r5.Cheque_DD_Date__c = system.today();
+        r5.Project__c = objpr.Id;
+        r5.Project_Unit__c = objPU1.id;
+        r5.Opportunity__c = objOpportunity.Id;
+        r5.CheckReceipt__c = true;
+        r5.Physically_Cheque_Received__c = true;
+        r5.Approval_Status__c = 'Approved';
+        r5.Receipt_Date__c = system.today();
+        r5.DraweeBank__c = 'CITI';
+        r5.Total_Amount__c = 8401;
+        r5.Amount_Rs__c = 8401;
+        r5.Amount_Advanced__c = 0;
+        r5.Currency__c = 'Indian Rupee';
+        r5.Reason_for_rejection_new__c = 'Accepted';
+        r5.SAP_Posting_Date__c = system.today();
+        r5.Mode__c = 'Credit Note';
+        r5.Sub_Type_Credit_Note__c = 'TDS';
+        r5.Drawn_in_favour_of__c = '';
+        insert r5;
+        r5.Banking__c = 'Payment Successful';
+        update r5;
+        
+        Receipt__c r6 = new Receipt__c();
+        r6.Cheque_DD_Amount_Rs__c = 200000;
+        r6.Cheque_DD__c = '908888';
+        r6.Cheque_DD_Date__c = system.today();
+        r6.SAP_Posting_Date__c = system.today();
+        r6.Project__c = objpr.Id;
+        r6.Project_Unit__c = objPU1.id;
+        r6.Opportunity__c = objOpportunity.Id;
+        r6.CheckReceipt__c = true;
+        r6.Token_Amount_Receipt__c = true;
+        r6.Physically_Cheque_Received__c = true;
+        r6.Approval_Status__c = 'Approved';
+        r6.Receipt_Date__c = system.today();
+        r6.DraweeBank__c = 'Axis Bank';
+        r6.Total_Amount__c = 200000;
+        r6.Amount_Rs__c = 200000;
+        r6.Amount_Advanced__c = 0;
+        r6.mode__c = 'Cheque';
+        r6.Currency__c = 'Indian Rupee';
+        r6.Booking__c = b.Id;
+        r6.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r6;
+        
+        
+        Customization_New__c cn = new Customization_New__c();
+        cn.Booking__c = b.Id;
+        
+        cn.Interior_Design_Head__c = objpr.Interior_Design_Head__c;
+        //cn.Name = 'abcd';
+        cn.Quotation__c = qController.Id;
+        cn.Special_Discount__c = '4';
+        cn.Total_Customization_Cost__c = 4633737;
+        cn.Status__c = 'Active';
+        insert cn;
+        
+        Customization_Master__c cm = new Customization_Master__c();
+        cm.Active__c = true;
+        cm.Tax_Rate__c = 'GST 18%';
+        cm.Name = 'Master';
+        insert cm;
+        
+        
+        
+        Customization_Details__c cd = new Customization_Details__c();
+        cd.Name = 'Customization';
+        cd.Sr_No__c = 1;
+        cd.Amount__c = 433435;
+        cd.Description__c = ' Description';
+        cd.Amount__c = 234;
+        cd.Active__c = true;
+        cd.Customization_Master_New__c = cm.Id;
+        
+        insert cd;
+        
+        Customization_Master_Line_Items__c cmli = new Customization_Master_Line_Items__c();
+        cmli.Active__c = true;
+        cmli.Amount__c = 2242;
+        cmli.Booking__c = b.Id;
+        cmli.Customization__c = cn.Id;
+        cmli.Name = 'Namea';
+        cmli.Quotation__c = qController.Id;
+        cmli.Sr_No__c = 1;
+        insert cmli;
+        
+        Customization_Payment_Milestones__c CPM = new Customization_Payment_Milestones__c();
+        CPM.Milestone_Name__c = 'ABCD';
+        CPM.Milestone_type__c = 'Time Linked';
+        CPM.Number_of_days_months__c = 14;
+        CPM.Milestone_Date_Calculation__c = 'Days';
+        CPM.Percentage__c = 100;
+        CPM.Amount__c = 100;
+        CPM.CGST__c = 9;
+        CPM.SGST__c = 9;
+        CPM.Demand_Raised__c = false;
+        CPM.Due_Date__c = system.today().addDays(5);
+        CPM.Booking__c = b.id;
+        CPM.Customization__c = cn.id;
+        
+        Insert CPM;
+        
+        ProjectCharges__c PCharge = new ProjectCharges__c();
+        PCharge.Project__c = objpr.Id;
+        PCharge.Name = 'Basic';
+        PCharge.Charge_Name__c = 'Basic';
+        PCharge.Active__c = true;
+        PCharge.Calculatedas__c = 'Rate List at Project Charges Level';
+        PCharge.ChargeBucket__c = 'Agreement Value';
+        PCharge.Tax_Rate__c = 'GST 12%';
+        PCharge.Area_Type__c = 'RERA Carpet Area';
+        PCharge.Discount_Applicable__c = True;
+        PCharge.Type__c = 'PSF';
+        insert PCharge;
+        
+        Tax_Slab__c taxS = new Tax_Slab__C();
+        taxS.From_Date__c = System.today().addDays(-10);
+        taxS.To_Date__c = System.today().addDays(10);
+        taxS.Tax_Name__c = 'GST 12%';
+        taxS.Tax1_Name__c = 'CGST';
+        taxS.Tax1_Code__c = 'CGST';
+        taxS.Tax1_Percentage__c = 9.00;
+        taxS.Taxable1_Percentage__c = 66.66667;
+        taxS.Tax_Rate__c = 'GST 12%';
+        taxS.Tax2_Name__c = 'SGST';
+        taxS.Tax2_Code__c = 'SGST';
+        taxS.Tax2_Percentage__c = 9.00;
+        taxS.Taxable2_Percentage__c = 66.66667;
+        taxS.SAP_code__c = 'H3';
+        insert taxS;
+        
+        Tax_Slab__c taxS1 = new Tax_Slab__C();
+        taxS1.From_Date__c = System.today().addDays(-10);
+        taxS1.To_Date__c = System.today().addDays(10);
+        taxS1.Charge_Type__c = 'Interior Charges';
+        taxS1.Tax_Name__c = 'GST 18%';
+        taxS1.Tax1_Name__c = 'CGST';
+        taxS1.Tax1_Code__c = 'CGST';
+        taxS1.Tax1_Percentage__c = 9.00;
+        taxS1.Taxable1_Percentage__c = 100.00000;
+        taxS1.Tax_Rate__c = 'GST 18%';
+        taxS1.Tax2_Name__c = 'SGST';
+        taxS1.Tax2_Code__c = 'SGST';
+        taxS1.Tax2_Percentage__c = 9.00;
+        taxS1.Taxable2_Percentage__c = 100.00000;
+        taxS1.SAP_code__c = 'H3';
+        insert taxS1;
+        
+        Payment_Milestones__c pm1 = new Payment_Milestones__c();
+        pm1.Milestone_Type__c = 'Date Linked';
+        pm1.Quotation__c = qController.id;
+        pm1.Time_Period__c = 'Days';
+        pm1.Number_Of_Days__c = 30;
+        pm1.Milestone_Due_Date__c = date.today();
+        pm1.is_demand_raised__c = false;
+        insert pm1;
+        
+        Demand__c d = new Demand__c();
+        d.Payment_Milestones__c = pm.id;
+        d.Quotation__c = qController.id;
+        d.Booking__c = b.id;
+        d.Total_Amount_Demanded__c = 4601540.00;
+        d.Total_Tax_Demanded__c = 818128.00;
+        d.Invoice_Date__c = date.today();
+        d.Charge_1_Lookup__c = PCharge.id;
+        d.Customization_Demand__c = false;
+        d.Bypass_Validation__c = true;
+        d.Due_Date__c = system.today();
+        insert d;
+        
+        d.Is_Transferred__c = true;
+        update d;
+        
+        Demand__c d1 = new Demand__c();
+        d1.Payment_Milestones__c = pm.id;
+        d1.Quotation__c = qController.id;
+        d1.Booking__c = b.id;
+        d1.Total_Amount_Demanded__c = 4601540.00;
+        d1.Total_Tax_Demanded__c = 818128.00;
+        d1.Invoice_Date__c = date.today();
+        d1.Charge_1_Lookup__c = PCharge.id;
+        d1.Debit_Type__c = 'Brokerage Reversal';
+        d1.Debit_Demanded__c = 58;
+        d1.Debit_CGST__c = 5;
+        d1.Debit_SGST__c = 5;
+        
+        d1.Accounting_Document_Number__c = '53871581';
+        insert d1;
+        
+        Demand__c d2 = new Demand__c();
+        d2.Payment_Milestones__c = pm.id;
+        d2.Quotation__c = qController.id;
+        d2.Booking__c = b.id;
+        d2.Total_Amount_Demanded__c = 4601540.00;
+        d2.Total_Tax_Demanded__c = 818128.00;
+        d2.Invoice_Date__c = date.today();
+        d2.Debit_Type__c = 'TDS';
+        d2.Debit_Demanded__c = 58;
+        d2.Debit_CGST__c = 5;
+        d2.Debit_SGST__c = 5;
+        
+        d2.Accounting_Document_Number__c = '5387152581';
+        insert d2;
+        
+        Demand__c dcust = new Demand__c();
+        dcust.Payment_Milestones__c = pm.id;
+        dcust.Quotation__c = qController.id;
+        dcust.Booking__c = b.id;
+        dcust.Total_Amount_Demanded__c = 4601540.00;
+        dcust.Total_Tax_Demanded__c = 818128.00;
+        dcust.Invoice_Date__c = date.today();
+        dcust.Charge_1_Lookup__c = PCharge.id;
+        dcust.Debit_Type__c = 'Customization Charge';
+        dcust.Debit_Demanded__c = 58;
+        dcust.Debit_CGST__c = 5;
+        dcust.Debit_SGST__c = 5;
+        dcust.Customization_Payment_Milestones__c = CPM.id;
+        dcust.Customization_Demand__c = true;
+        dcust.Due_Date__c = system.today();
+        insert dcust;
+        
+        
+        
+        Demand__c doc = new Demand__c();
+        doc.Payment_Milestones__c = pm.id;
+        doc.Quotation__c = qController.id;
+        doc.Booking__c = b.id;
+        doc.Total_Amount_Demanded__c = 4601540.00;
+        doc.Total_Tax_Demanded__c = 818128.00;
+        doc.Invoice_Date__c = date.today();
+        doc.Charge_1_Lookup__c = PCharge.id;
+        doc.Debit_Type__c = 'Brokerage Reversal';
+        doc.Debit_Demanded__c = 58;
+        doc.Debit_CGST__c = 5;
+        doc.Debit_SGST__c = 5;
+        doc.SAP_Posting_Date__c = system.today();
+        doc.Accounting_Document_Number__c = '53871581';
+        insert doc;
+        doc.Approval_Status_Debit_Note__c = 'Accepted';
+        update doc;
+        
+        
+        Applicant_Details__c a1 = new Applicant_Details__c();
+        a1.Salutation__c = 'Mr.';
+        a1.Name = 'First Man1';
+        a1.Booking__c = b.id;
+        a1.Applicant_Number__c = 'Primary Applicant';
+        a1.Date_of_incorporation__c = System.today();
+        a1.DOB__c = system.today();
+        a1.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a1.Pincode__c = 444344;
+        a1.Country__c = 'India';
+        a1.State__c = 'Maharashtra';
+        a1.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a1.City__c = 'Nagpur';
+        a1.GSTIN__c = '324134';
+        a1.Mailing_Country__c= null;
+        a1.Mailing_Address__c = 'abccc';
+        a1.Mailing_City__c = 'amravati';
+        a1.Mailing_Pincode__c= null;
+        a1.Mobile_Number__c = '9090909031';
+        a1.Email_Address__c = 'newman1@justnow3.com';
+        a1.Nationality__c = 'Indian';
+        a1.Type_Of_Applicant__c  = 'Individual Buyer';
+        a1.Subtype_Of_Applicant__c = 'Indian National';
+        a1.Pancard__c = true;
+        a1.Address_Proof__c = true;
+        a1.Address_Proof_Document__c = 'xyz';
+        a1.Address_Proof_Number__c = 'pqr';
+        a1.One_Passport_Size_Color_Photograph__c = true;
+        a1.Other_Details_Remarks__c = 'abcd';
+        a1.Of_Ownership__c = 100;
+        a1.street__c = 'a';
+        a1.Street_2__c = 'b';
+        a1.Street_3__c = 'c';
+        a1.Street_4__c = 'd';
+        a1.Street_5__c = 'e';
+        a1.Bypass_Validation_Applicant__c = true;
+        insert a1;
+       
+        
+        List<SendCustomizationDemand.flowInput> inputList = new List<SendCustomizationDemand.flowInput>();
+        SendCustomizationDemand.flowInput input;
+        input = new SendCustomizationDemand.flowInput();
+        input.currentRecordId = dcust.Id;
+        inputList.add(input);
+        /*List<SendDemandMailAndPDF.flowInput> inputListd = new List<SendDemandMailAndPDF.flowInput>();
+        SendDemandMailAndPDF.flowInput inputd;
+        inputd = new SendDemandMailAndPDF.flowInput();
+        inputd.currentRecordId = d.Id;
+        inputListd.add(inputd);*/
+        
+        set<Id> rc = new set<Id>();
+        rc.add(cr.id);
+        set<Id> rec = new set<Id>();
+        rec.add(r1.id);
+        set<Id> rec1 = new set<Id>();
+        rec1.add(r6.id);
+        set<id> did = new set<Id>();
+        did.add(d.id);
+        //did.add(d2.id);
+        set<id> dcustid = new set<Id>();
+        dcustid.add(dcust.id);
+        List<id> custid = new List<Id>();
+        custid.add(dcust.id);
+        String Dummy = '{"example":"test"}';
+      //  Test.startTest();
+        PageReference pRef = Page.TransferInvoicesAndReceipts;
+        Test.setCurrentPage(pRef);
+        ApexPages.currentPage().getParameters().put('id',b.id);
+        TransferInvoicesAndReceiptsController transf = new TransferInvoicesAndReceiptsController();
+        transf.Transfer();
+        
+        Test.stopTest(); 
+        
+    }
+    @isTest
+    Public static void SAPIntegrationServicesTest5(){
+   
+       
+        // account creation 
+        Account objac = new Account();
+        objac.FirstName = 'name';
+        objac.LastName = 'Test';
+        objac.Correspondence_Address__c = 'Delhi';
+        objac.Phone = '1655246165' ;
+        objac.PersonEmail = 'test12322@stetig.in';
+        objac.PersonMobilePhone = '7875225343';
+        objac.Category__c = 'General';
+        //  objac.Unit__c = objPU1.Id;
+        insert objac;
+        // Project Creation
+        Project__c objpr = new Project__c();
+        objpr.Project_Code__c = 'T351';
+        objpr.Name = 'pname1';
+        objpr.Start_Date__c = System.today().addDays(-5);
+        objpr.Project_Stage__c='Launch1';
+        objpr.Address__c = '14013, Fantasy Land, Utopia, Planet Mars, OUTERWORLD CODE -11011';
+        objpr.Project_Property_Type__c = 'Residential';                      
+        objpr.NPV__c = 12;    
+        objpr.Future_NPV__c = 12;
+        objpr.Car_Park_Type_1__c = 'Open';
+        objpr.Charge_Value_1__c = 100000; 
+        objpr.Schedule_F_Property__c = 'Schdule F';
+        objpr.IDSA_Preamble__c = 'preamble';
+        objpr.Project_Code__c = '1000';
+        objpr.Company_Code__c = 2000;
+        objpr.Interior_Design_Head__c = userinfo.getUserId();
+        insert objpr;
+        
+        End_Time_for_Event__c ed = new End_Time_for_Event__c();
+        ed.Name = 'End Time Minutes';
+        ed.End_Minutes__c = 120;
+        insert ed;
+        
+        // opportunity creation              
+        Opportunity objOpportunity = new Opportunity();
+        objOpportunity.Name = 'Test';
+        objOpportunity.CloseDate = System.today();
+        objOpportunity.AccountId = objac.Id;           
+        objOpportunity.StageName = 'Qualification'; 
+        objOpportunity.Project__c = objpr.Id;
+        objOpportunity.Date_of_Agreement__c = System.today();
+        insert objOpportunity;
+        
+        
+        Cluster__c ph = new Cluster__c();
+        ph.Name = 'test phase';
+        ph.Project__c  = objpr.Id;
+        ph.MAHA_RERA_No__c = '12345';
+        ph.CompanyName_Escrow__c = 'ABCD';
+        ph.CompanyName_Tax__c = 'XYZ';
+    //    ph.Schedule_E_Property__c = 'Schedule E';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project Land';
+        ph.Schedule_A_Property__c = 'Schedule A';
+        ph.Schedule_B_Property__c = 'Schedule B';
+        ph.Schedule_C_Property__c = 'Schedule C';
+        ph.Schedule_D_Property__c = 'Schedule D';
+        ph.Schedule_F_Property__c = 'Schedule F';
+        ph.Phase_Land__c = 'Phase Land';
+        ph.Project_Land__c = 'Project land';
+        ph.Plan_01_Master_Development__c = 'Plan 01';
+        ph.Plan_02_Residential_Development__c = 'Plan 02';
+        ph.Plan_03_Project__c = 'Plan 03';
+        ph.SAP_Project_Code__c = '3231';
+        ph.SAP_Plant_Code__c = '3637';
+        ph.Short_Key_for_a_House_Bank__c = '4244';
+        ph.Tax_House_Bank_Code__c = '57877';
+        insert ph;
+        
+        // tower creation 
+        Tower__c t = new Tower__c();
+        t.Name = 'Tower X';
+        t.Project__c = objpr.Id;
+        //t.RDS_Company_Code__c=objlglentity.Id;
+        t.Cluster__c= ph.Id;
+        insert t;
+        
+        TE_Product__c pd = new TE_Product__c();
+        pd.Name = 'C20';
+        pd.Product_Type__c = 'Apartment';
+        insert pd;
+        
+        Project_Product__c ppr = new Project_Product__c();
+        ppr.name = 'ppr';
+        ppr.Project__c = objpr.id;
+        ppr.Product__c = pd.id;
+        ppr.Car_Park_Type_1__c = 'Open';
+        ppr.Car_Park_Count_1__c = 1;
+        ppr.Default_Customisation__c = 'Online';
+        ppr.Default_Specification__c = 'Green';
+        insert ppr;
+        
+        Sub_Product__c sb = new Sub_Product__c();
+        sb.name = 'C20a1';
+        sb.Project__c = objpr.id;
+        sb.Product__c = pd.id;
+        sb.Active__c = true;
+        sb.Status__c = 'Approved';
+        sb.Carpet_Area__c = 1650;
+        sb.Super_Builtup_Area__c = 2000;
+        sb.RERA_Carpet_Area__c = 1650;
+        sb.Saleable_Area__c = 2000;
+        sb.Builtup_Area__c = 1800;
+        insert sb; 
+        
+        Unit__c objPU1 = new Unit__c();    
+        
+        objPU1.Name = 'TestFive';      
+        objPU1.Project__c = objpr.Id;
+        objPU1.Unit_status__c='Available';
+        objPU1.Tower__c = t.Id;
+        objPU1.Active_Inactive__c = 'Active';
+        objPU1.Floor__c = 2;
+        objPU1.Product_Type__c = sb.id; 
+        objPU1.Floor__c = 2;
+        objPU1.Configuration__c = '1 BHK';
+        objPU1.TE_Product__c = pd.id;
+        objPU1.Additional_Land__c = 150;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor_Rise_PSF__c = 250;
+        objPU1.Customization_Charge_PSF__c = 0;
+        objPU1.Additional_Land_PSF__c = 100;
+        objPU1.Premium_1__c = 'View Premium';
+        objPU1.Premium_2__c = 'Ground Level Premium';
+        objPU1.View_Premium_PSF__c = 10;
+        objPU1.Vastu_Premium_PSF__c = 10;
+        objPU1.MBR_Premium_Garden_Orientation_PSF__c= 19;
+        objPU1.Ground_Level_Premium_PSF__c = 10;
+        objPU1.Permitted_Use__c = 'Commercial';
+        objPU1.Parent_Carpet_Area__c = 123;
+        objPU1.Parent_Saleable_Area__c = 234;
+        objPU1.Parent_Unit__c = 'Parent Unit';
+        objPU1.Parent_Unit_Plan__c = 'Unit Plan';
+        objPU1.TE_Product__c = pd.Id;
+        objPU1.Default_Specification_new__c = 'Green';
+        objPU1.Floor__c = 4;
+        objPU1.Unit_Ownership__c = 'TE';
+        insert objPU1;
+        
+        Quotation__c qController = new Quotation__c();
+        qController.Opportunity__c = objOpportunity.Id;
+        qController.Unit__c = objPU1.Id;
+        qController.Quote_Status__c = 'Valid';
+        insert qController;
+        
+        Payment_Milestones__c pm = new Payment_Milestones__c();
+        pm.Quotation__c = qController.id;
+        pm.Milestone_Type_edit__c = 'Date Linked';
+        pm.Invoice_Date__c = system.today().addDays(5);
+        pm.Invoice_Due_Date__c = system.today().addDays(5);
+        insert pm;
+        
+        Booking__c b = new Booking__c();
+        b.Booking_Date__c = system.today();
+        b.Project__c = objpr.Id;
+        b.Opportunity__c = objOpportunity.Id;
+        b.Unit__c = objPU1.Id;
+        b.Audit_Approval_Date__c = system.today().addMonths(3);
+        b.status__c = 'Processed';
+        b.Quotation__c = qController.Id;
+        b.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b.Signed_Termsheet_Date__c = System.today();
+        insert b;
+        
+        objOpportunity.Booking__c = b.Id;
+        objOpportunity.Old_Booking__c = b.id;
+        update objOpportunity;
+      Test.startTest();  
+        Booking__c b1 = new Booking__c();
+        b1.Booking_Date__c = system.today();
+        b1.Project__c = objpr.Id;
+        b1.Opportunity__c = objOpportunity.Id;
+        b1.Unit__c = objPU1.Id;
+        b1.Audit_Approval_Date__c = system.today().addMonths(3);
+        b1.status__c = 'Processed';
+        b1.Quotation__c = qController.Id;
+        b1.Primary_Applicant_Email__c = 'abc.abc@abc.com';
+        b1.Future_Correspondence_Contact__c = 'First Applicant';
+        b.Customer_Number__c = 13242;
+        b1.Signed_Termsheet_Date__c = System.today();
+        insert b1;
+        
+        Receipt__c r1 = new Receipt__c();
+        r1.Cheque_DD_Amount_Rs__c = 200000;
+        r1.Cheque_DD__c = '908888';
+        r1.Cheque_DD_Date__c = system.today();
+        r1.SAP_Posting_Date__c = system.today();
+        r1.Project__c = objpr.Id;
+        r1.Project_Unit__c = objPU1.id;
+        r1.Opportunity__c = objOpportunity.Id;
+        r1.CheckReceipt__c = true;
+        r1.Token_Amount_Receipt__c = true;
+        r1.Physically_Cheque_Received__c = true;
+        r1.Approval_Status__c = 'Approved';
+        r1.Receipt_Date__c = system.today();
+        r1.DraweeBank__c = 'Axis Bank';
+        r1.Total_Amount__c = 200000;
+        r1.Amount_Rs__c = 200000;
+        r1.Amount_Advanced__c = 0;
+        r1.mode__c = 'Cheque';
+        r1.Currency__c = 'Indian Rupee';
+        r1.Booking__c = b.Id;
+        r1.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r1;
+        
+        Receipt__c cr = new Receipt__c();
+        cr.Cheque_DD_Amount_Rs__c = 200000;
+        cr.Cheque_DD__c = '908888';
+        cr.Cheque_DD_Date__c = system.today();
+        cr.SAP_Posting_Date__c = system.today();
+        cr.Project__c = objpr.Id;
+        cr.Project_Unit__c = objPU1.id;
+        cr.Opportunity__c = objOpportunity.Id;
+        cr.CheckReceipt__c = true;
+        cr.Token_Amount_Receipt__c = true;
+        cr.Physically_Cheque_Received__c = true;
+        cr.Approval_Status__c = 'Approved';
+        cr.Receipt_Date__c = system.today();
+        cr.DraweeBank__c = 'Axis Bank';
+        cr.Total_Amount__c = 200000;
+        cr.Amount_Rs__c = 200000;
+        cr.Amount_Advanced__c = 0;
+        cr.mode__c = 'Credit Note';
+        cr.Currency__c = 'Indian Rupee';
+        cr.Booking__c= b.Id;
+        cr.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert cr;
+        
+        cr.Is_Transferred__c = true;
+        update cr;
+        
+        Receipt__c r3 = new Receipt__c();
+        r3.Cheque_DD_Amount_Rs__c = 8401;
+        r3.Booking__c = b.id;
+        r3.Cheque_DD__c = '908881';
+        r3.Cheque_DD_Date__c = system.today();
+        r3.Project__c = objpr.Id;
+        r3.Project_Unit__c = objPU1.id;
+        r3.Opportunity__c = objOpportunity.Id;
+        r3.CheckReceipt__c = true;
+        r3.Physically_Cheque_Received__c = true;
+        r3.Approval_Status__c = 'Approved';
+        r3.Receipt_Date__c = system.today();
+        r3.DraweeBank__c = 'CITI';
+        r3.Total_Amount__c = 8401;
+        r3.Amount_Rs__c = 8401;
+        r3.Amount_Advanced__c = 0;
+        r3.mode__c = 'Cheque';
+        r3.Currency__c = 'Indian Rupee';
+        insert r3;
+        
+        r3.Reason_for_rejection_new__c = 'Accepted';
+        update r3;
+        
+        Receipt__c r4 = new Receipt__c();
+        r4.Cheque_DD_Amount_Rs__c = 8401;
+        r4.Booking__c = b.id;
+        r4.Cheque_DD__c = '908881';
+        r4.Cheque_DD_Date__c = system.today();
+        r4.Project__c = objpr.Id;
+        r4.Project_Unit__c = objPU1.id;
+        r4.Opportunity__c = objOpportunity.Id;
+        r4.CheckReceipt__c = true;
+        r4.Physically_Cheque_Received__c = true;
+        r4.Approval_Status__c = 'Approved';
+        r4.Receipt_Date__c = system.today();
+        r4.DraweeBank__c = 'CITI';
+        r4.Total_Amount__c = 8401;
+        r4.Amount_Rs__c = 8401;
+        r4.Amount_Advanced__c = 0;
+        r4.mode__c = 'Cheque';
+        r4.Currency__c = 'Indian Rupee';
+        r4.Reason_for_rejection_new__c = 'Accepted';
+        r4.SAP_Posting_Date__c = system.today();
+        insert r4;
+        
+        r4.Banking__c = 'Payment Failed - Insufficient Funds';
+        update r4;
+        
+        Receipt__c r5 = new Receipt__c();
+        r5.Cheque_DD_Amount_Rs__c = 8402;
+        r5.Booking__c = b.id;
+        r5.Cheque_DD__c = '908881';
+        r5.Cheque_DD_Date__c = system.today();
+        r5.Project__c = objpr.Id;
+        r5.Project_Unit__c = objPU1.id;
+        r5.Opportunity__c = objOpportunity.Id;
+        r5.CheckReceipt__c = true;
+        r5.Physically_Cheque_Received__c = true;
+        r5.Approval_Status__c = 'Approved';
+        r5.Receipt_Date__c = system.today();
+        r5.DraweeBank__c = 'CITI';
+        r5.Total_Amount__c = 8401;
+        r5.Amount_Rs__c = 8401;
+        r5.Amount_Advanced__c = 0;
+        r5.Currency__c = 'Indian Rupee';
+        r5.Reason_for_rejection_new__c = 'Accepted';
+        r5.SAP_Posting_Date__c = system.today();
+        r5.Mode__c = 'Credit Note';
+        r5.Sub_Type_Credit_Note__c = 'TDS';
+        r5.Drawn_in_favour_of__c = '';
+        insert r5;
+        r5.Banking__c = 'Payment Successful';
+        update r5;
+        
+        Receipt__c r6 = new Receipt__c();
+        r6.Cheque_DD_Amount_Rs__c = 200000;
+        r6.Cheque_DD__c = '908888';
+        r6.Cheque_DD_Date__c = system.today();
+        r6.SAP_Posting_Date__c = system.today();
+        r6.Project__c = objpr.Id;
+        r6.Project_Unit__c = objPU1.id;
+        r6.Opportunity__c = objOpportunity.Id;
+        r6.CheckReceipt__c = true;
+        r6.Token_Amount_Receipt__c = true;
+        r6.Physically_Cheque_Received__c = true;
+        r6.Approval_Status__c = 'Approved';
+        r6.Receipt_Date__c = system.today();
+        r6.DraweeBank__c = 'Axis Bank';
+        r6.Total_Amount__c = 200000;
+        r6.Amount_Rs__c = 200000;
+        r6.Amount_Advanced__c = 0;
+        r6.mode__c = 'Cheque';
+        r6.Currency__c = 'Indian Rupee';
+        r6.Booking__c = b.Id;
+        r6.Drawn_in_favour_of__c = 'Flat Cost |TOTAL ENVIRONMENT BUILDING SYSTEMS PVT LTD COLLECTION ESCROW ACCOUNT- ATR2|RBL Bank|1234567890';
+        insert r6;
+        
+        
+        Customization_New__c cn = new Customization_New__c();
+        cn.Booking__c = b.Id;
+        
+        cn.Interior_Design_Head__c = objpr.Interior_Design_Head__c;
+        //cn.Name = 'abcd';
+        cn.Quotation__c = qController.Id;
+        cn.Special_Discount__c = '4';
+        cn.Total_Customization_Cost__c = 4633737;
+        cn.Status__c = 'Active';
+        insert cn;
+        
+        Customization_Master__c cm = new Customization_Master__c();
+        cm.Active__c = true;
+        cm.Tax_Rate__c = 'GST 18%';
+        cm.Name = 'Master';
+        insert cm;
+        
+        
+        
+        Customization_Details__c cd = new Customization_Details__c();
+        cd.Name = 'Customization';
+        cd.Sr_No__c = 1;
+        cd.Amount__c = 433435;
+        cd.Description__c = ' Description';
+        cd.Amount__c = 234;
+        cd.Active__c = true;
+        cd.Customization_Master_New__c = cm.Id;
+        
+        insert cd;
+        
+        Customization_Master_Line_Items__c cmli = new Customization_Master_Line_Items__c();
+        cmli.Active__c = true;
+        cmli.Amount__c = 2242;
+        cmli.Booking__c = b.Id;
+        cmli.Customization__c = cn.Id;
+        cmli.Name = 'Namea';
+        cmli.Quotation__c = qController.Id;
+        cmli.Sr_No__c = 1;
+        insert cmli;
+        
+        Customization_Payment_Milestones__c CPM = new Customization_Payment_Milestones__c();
+        CPM.Milestone_Name__c = 'ABCD';
+        CPM.Milestone_type__c = 'Time Linked';
+        CPM.Number_of_days_months__c = 14;
+        CPM.Milestone_Date_Calculation__c = 'Days';
+        CPM.Percentage__c = 100;
+        CPM.Amount__c = 100;
+        CPM.CGST__c = 9;
+        CPM.SGST__c = 9;
+        CPM.Demand_Raised__c = false;
+        CPM.Due_Date__c = system.today().addDays(5);
+        CPM.Booking__c = b.id;
+        CPM.Customization__c = cn.id;
+        
+        Insert CPM;
+        
+        ProjectCharges__c PCharge = new ProjectCharges__c();
+        PCharge.Project__c = objpr.Id;
+        PCharge.Name = 'Basic';
+        PCharge.Charge_Name__c = 'Basic';
+        PCharge.Active__c = true;
+        PCharge.Calculatedas__c = 'Rate List at Project Charges Level';
+        PCharge.ChargeBucket__c = 'Agreement Value';
+        PCharge.Tax_Rate__c = 'GST 12%';
+        PCharge.Area_Type__c = 'RERA Carpet Area';
+        PCharge.Discount_Applicable__c = True;
+        PCharge.Type__c = 'PSF';
+        insert PCharge;
+        
+        Tax_Slab__c taxS = new Tax_Slab__C();
+        taxS.From_Date__c = System.today().addDays(-10);
+        taxS.To_Date__c = System.today().addDays(10);
+        taxS.Tax_Name__c = 'GST 12%';
+        taxS.Tax1_Name__c = 'CGST';
+        taxS.Tax1_Code__c = 'CGST';
+        taxS.Tax1_Percentage__c = 9.00;
+        taxS.Taxable1_Percentage__c = 66.66667;
+        taxS.Tax_Rate__c = 'GST 12%';
+        taxS.Tax2_Name__c = 'SGST';
+        taxS.Tax2_Code__c = 'SGST';
+        taxS.Tax2_Percentage__c = 9.00;
+        taxS.Taxable2_Percentage__c = 66.66667;
+        taxS.SAP_code__c = 'H3';
+        insert taxS;
+        
+        Tax_Slab__c taxS1 = new Tax_Slab__C();
+        taxS1.From_Date__c = System.today().addDays(-10);
+        taxS1.To_Date__c = System.today().addDays(10);
+        taxS1.Charge_Type__c = 'Interior Charges';
+        taxS1.Tax_Name__c = 'GST 18%';
+        taxS1.Tax1_Name__c = 'CGST';
+        taxS1.Tax1_Code__c = 'CGST';
+        taxS1.Tax1_Percentage__c = 9.00;
+        taxS1.Taxable1_Percentage__c = 100.00000;
+        taxS1.Tax_Rate__c = 'GST 18%';
+        taxS1.Tax2_Name__c = 'SGST';
+        taxS1.Tax2_Code__c = 'SGST';
+        taxS1.Tax2_Percentage__c = 9.00;
+        taxS1.Taxable2_Percentage__c = 100.00000;
+        taxS1.SAP_code__c = 'H3';
+        insert taxS1;
+        
+        Payment_Milestones__c pm1 = new Payment_Milestones__c();
+        pm1.Milestone_Type__c = 'Date Linked';
+        pm1.Quotation__c = qController.id;
+        pm1.Time_Period__c = 'Days';
+        pm1.Number_Of_Days__c = 30;
+        pm1.Milestone_Due_Date__c = date.today();
+        pm1.is_demand_raised__c = false;
+        insert pm1;
+        
+        Demand__c d = new Demand__c();
+        d.Payment_Milestones__c = pm.id;
+        d.Quotation__c = qController.id;
+        d.Booking__c = b.id;
+        d.Total_Amount_Demanded__c = 4601540.00;
+        d.Total_Tax_Demanded__c = 818128.00;
+        d.Invoice_Date__c = date.today();
+        d.Charge_1_Lookup__c = PCharge.id;
+        d.Customization_Demand__c = false;
+        d.Bypass_Validation__c = true;
+        d.Due_Date__c = system.today();
+        insert d;
+        
+        d.Is_Transferred__c = true;
+        update d;
+        
+        Demand__c d1 = new Demand__c();
+        d1.Payment_Milestones__c = pm.id;
+        d1.Quotation__c = qController.id;
+        d1.Booking__c = b.id;
+        d1.Total_Amount_Demanded__c = 4601540.00;
+        d1.Total_Tax_Demanded__c = 818128.00;
+        d1.Invoice_Date__c = date.today();
+        d1.Charge_1_Lookup__c = PCharge.id;
+        d1.Debit_Type__c = 'Brokerage Reversal';
+        d1.Debit_Demanded__c = 58;
+        d1.Debit_CGST__c = 5;
+        d1.Debit_SGST__c = 5;
+        
+        d1.Accounting_Document_Number__c = '53871581';
+        insert d1;
+        
+        Demand__c d2 = new Demand__c();
+        d2.Payment_Milestones__c = pm.id;
+        d2.Quotation__c = qController.id;
+        d2.Booking__c = b.id;
+        d2.Total_Amount_Demanded__c = 4601540.00;
+        d2.Total_Tax_Demanded__c = 818128.00;
+        d2.Invoice_Date__c = date.today();
+        d2.Debit_Type__c = 'TDS';
+        d2.Debit_Demanded__c = 58;
+        d2.Debit_CGST__c = 5;
+        d2.Debit_SGST__c = 5;
+        
+        d2.Accounting_Document_Number__c = '5387152581';
+        insert d2;
+        
+        Demand__c dcust = new Demand__c();
+        dcust.Payment_Milestones__c = pm.id;
+        dcust.Quotation__c = qController.id;
+        dcust.Booking__c = b.id;
+        dcust.Total_Amount_Demanded__c = 4601540.00;
+        dcust.Total_Tax_Demanded__c = 818128.00;
+        dcust.Invoice_Date__c = date.today();
+        dcust.Charge_1_Lookup__c = PCharge.id;
+        dcust.Debit_Type__c = 'Customization Charge';
+        dcust.Debit_Demanded__c = 58;
+        dcust.Debit_CGST__c = 5;
+        dcust.Debit_SGST__c = 5;
+        dcust.Customization_Payment_Milestones__c = CPM.id;
+        dcust.Customization_Demand__c = true;
+        dcust.Due_Date__c = system.today();
+        insert dcust;
+        
+        
+        
+        Demand__c doc = new Demand__c();
+        doc.Payment_Milestones__c = pm.id;
+        doc.Quotation__c = qController.id;
+        doc.Booking__c = b.id;
+        doc.Total_Amount_Demanded__c = 4601540.00;
+        doc.Total_Tax_Demanded__c = 818128.00;
+        doc.Invoice_Date__c = date.today();
+        doc.Charge_1_Lookup__c = PCharge.id;
+        doc.Debit_Type__c = 'Brokerage Reversal';
+        doc.Debit_Demanded__c = 58;
+        doc.Debit_CGST__c = 5;
+        doc.Debit_SGST__c = 5;
+        doc.SAP_Posting_Date__c = system.today();
+        doc.Accounting_Document_Number__c = '53871581';
+        insert doc;
+        doc.Approval_Status_Debit_Note__c = 'Accepted';
+        update doc;
+        
+         Test.stopTest();
+        Applicant_Details__c a1 = new Applicant_Details__c();
+        a1.Salutation__c = 'Mrs.';
+        a1.Name = 'First Man1';
+        a1.Booking__c = b.id;
+        a1.Applicant_Number__c = 'Primary Applicant';
+        a1.Date_of_incorporation__c = System.today();
+        a1.DOB__c = system.today();
+        a1.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a1.Pincode__c = 444344;
+        a1.Country__c = 'India';
+        a1.State__c = 'Maharashtra';
+        a1.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a1.City__c = 'Nagpur';
+        a1.GSTIN__c = '324134';
+        a1.Mailing_Country__c= null;
+        a1.Mailing_Address__c = 'abccc';
+        a1.Mailing_City__c = 'amravati';
+        a1.Mailing_Pincode__c= null;
+        a1.Mobile_Number__c = '9090909031';
+        a1.Email_Address__c = 'newman1@justnow3.com';
+        a1.Nationality__c = 'Indian';
+        a1.Type_Of_Applicant__c  = 'Individual Buyer';
+        a1.Subtype_Of_Applicant__c = 'Indian National';
+        a1.Pancard__c = true;
+        a1.Address_Proof__c = true;
+        a1.Address_Proof_Document__c = 'xyz';
+        a1.Address_Proof_Number__c = 'pqr';
+        a1.One_Passport_Size_Color_Photograph__c = true;
+        a1.Other_Details_Remarks__c = 'abcd';
+        a1.Of_Ownership__c = 100;
+        a1.street__c = 'a';
+        a1.Street_2__c = 'b';
+        a1.Street_3__c = 'c';
+        a1.Street_4__c = 'd';
+        a1.Street_5__c = 'e';
+        a1.Bypass_Validation_Applicant__c = true;
+        insert a1;
+        Applicant_Details__c a2 = new Applicant_Details__c();
+        a2.Salutation__c = 'Dr.';
+        a2.Name = 'First Man2';
+        a2.Booking__c = b1.id;
+        a2.Applicant_Number__c = 'Primary Applicant';
+        a2.Date_of_incorporation__c = System.today();
+        a2.DOB__c = system.today();
+        a2.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a2.Pincode__c = 444344;
+        a2.Country__c = 'India';
+        a2.State__c = 'Maharashtra';
+        a2.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a2.City__c = 'Nagpur';
+        a2.Mailing_Country__c= null;
+        a2.Mailing_Address__c = 'abccc';
+        a2.Mailing_City__c = 'amravati';
+        a2.Mailing_Pincode__c= null;
+        a2.Mobile_Number__c = '9090909535';
+        a2.Email_Address__c = 'newman1@justnow4.com';
+        a2.Nationality__c = 'Indian';
+        a2.Type_Of_Applicant__c  = 'Individual Buyer';
+        a2.Subtype_Of_Applicant__c = 'Indian National';
+        a2.Pancard__c = true;
+        a2.Address_Proof__c = true;
+        a2.Address_Proof_Document__c = 'xyz';
+        a2.Address_Proof_Number__c = 'pqr';
+        a2.One_Passport_Size_Color_Photograph__c = true;
+        a2.Other_Details_Remarks__c = 'abcd';
+        a2.Of_Ownership__c = 100;
+        a2.street__c = 'a';
+        a2.Street_2__c = 'b';
+        a2.Street_3__c = 'c';
+        a2.Street_4__c = 'd';
+        a2.Street_5__c = 'e';
+        a2.Bypass_Validation_Applicant__c = true;
+        insert a2;
+        Applicant_Details__c a3 = new Applicant_Details__c();
+        a3.Salutation__c = 'M/s.';
+        a3.Name = 'First Man2';
+        a3.Booking__c = b.id;
+        a3.Applicant_Number__c = 'Primary Applicant';
+        a3.Date_of_incorporation__c = System.today();
+        a3.DOB__c = system.today();
+        a3.Permanent_Address__c = 'Pike Street, New World, 45000';
+        a3.Pincode__c = 444344;
+        a3.Country__c = 'India';
+        a3.State__c = 'Maharashtra';
+        a3.Preferred_address_for_all_correspondence__c = 'Permanent';
+        a3.City__c = 'Nagpur';
+        
+        a3.Mailing_Pincode__c= null;
+        a3.Mobile_Number__c = '9090909535';
+        a3.Email_Address__c = 'newman1@justnow4.com';
+        
+        a3.Type_Of_Applicant__c  = 'Individual Buyer';
+        a3.Subtype_Of_Applicant__c = 'Indian National';
+        
+        a3.street__c = 'a';
+        a3.Street_2__c = 'b';
+        a3.Street_3__c = 'c';
+        a3.Street_4__c = 'd';
+        a3.Street_5__c = 'e';
+        a3.Bypass_Validation_Applicant__c = true;
+        insert a3;
+        List<SendCustomizationDemand.flowInput> inputList = new List<SendCustomizationDemand.flowInput>();
+        SendCustomizationDemand.flowInput input;
+        input = new SendCustomizationDemand.flowInput();
+        input.currentRecordId = dcust.Id;
+        inputList.add(input);
+        /*List<SendDemandMailAndPDF.flowInput> inputListd = new List<SendDemandMailAndPDF.flowInput>();
+        SendDemandMailAndPDF.flowInput inputd;
+        inputd = new SendDemandMailAndPDF.flowInput();
+        inputd.currentRecordId = d.Id;
+        inputListd.add(inputd);*/
+        
+        set<Id> rc = new set<Id>();
+        rc.add(cr.id);
+        set<Id> rec = new set<Id>();
+        rec.add(r1.id);
+        set<Id> rec1 = new set<Id>();
+        rec1.add(r6.id);
+        set<id> did = new set<Id>();
+        did.add(d.id);
+        //did.add(d2.id);
+        set<id> dcustid = new set<Id>();
+        dcustid.add(dcust.id);
+        List<id> custid = new List<Id>();
+        custid.add(dcust.id);
+        String Dummy = '{"example":"test"}';
+      
+        SAPIntegrationServices.createCustomerInSAP(b.Id);
+
+        
+     //   Test.stopTest();
+        
+    }
+}
